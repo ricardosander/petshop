@@ -5,7 +5,7 @@ class AnimalDao {
   private $oBanco;
 
   public function __construct() {
-    $this->oBanco = new Banco();
+    $this->oBanco = new MySQLBanco();
   }
 
   public function buscarTodos() {

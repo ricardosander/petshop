@@ -4,11 +4,11 @@
 </head>
 <body>
 <div class="container">
+  <h1>Bem vindo ao sistema petshop web</h1>
 <?php
 require_once("autoload.php");
 
 
-$banco = new Banco();
 try {
 
   $oDaoAniamis = new AnimalDao();
