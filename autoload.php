@@ -10,6 +10,11 @@ function meu_autoload($sClass) {
   if (file_exists($sNomeArquivo)) {
     require_once($sNomeArquivo);
   }
+
+  $sNomeArquivo = "controller/{$sClass}.php";
+  if (file_exists($sNomeArquivo)) {
+    require_once($sNomeArquivo);
+  }
 }
 
 spl_autoload_register("meu_autoload");
