@@ -27,6 +27,8 @@ class FrontController extends Controller {
   private $sBasePath = "";
 
   public function __construct() {
+
+    parent::__construct();
     $this->sDiretorioView = "index";
   }
 
@@ -81,6 +83,7 @@ class FrontController extends Controller {
       }
       $oController = new $this->sController();
     }
+    $oController->setView($this->sAcao);
     $oController->{$this->sAcao}();
   }
 }

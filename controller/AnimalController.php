@@ -4,6 +4,7 @@ class AnimalController extends Controller {
 
   public function __construct() {
 
+    parent::__construct();
     $this->sDiretorioView = "animal";
   }
 
@@ -16,10 +17,9 @@ class AnimalController extends Controller {
 
       $this->aDados['aAnimais'] = $aAnimais;
 
+      $this->renderizarView();
     } catch (Exception $e) {
       die($e->getMessage());
     }
-
-    $this->renderizarView("lista");
   }
 }
