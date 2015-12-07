@@ -41,4 +41,8 @@ class MySQLBanco implements Banco {
 
     return $oStdClas;
   }
+
+  public function escapeStrings($sString) {
+    return mysqli_real_escape_string($this->conn, $sString);
+  }
 }

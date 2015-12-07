@@ -50,4 +50,9 @@ class PGBanco implements Banco {
 
     return $oStdClas;
   }
+
+  public function escapeStrings($sString) {
+    // TODO: Implement escapeStrings() method.
+    die("método não implementado para o postgre");
+  }
 }
