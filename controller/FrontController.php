@@ -37,6 +37,11 @@ class FrontController extends Controller {
      */
     public function index() {
 
+        if (!$this->getSessao()->isUsuarioLogado()) {
+
+            header("Location: /login/login/");
+            die;
+        }
     }
 
     /**
