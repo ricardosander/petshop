@@ -76,13 +76,6 @@ function validarCadastroAnimal() {
     return false;
   }
 
-  if (!oObservacoes.value) {
-
-    alert("O campo Observações é de preenchimento obrigatório.");
-    oObservacoes.focus();
-    return false;
-  }
-
   if (oSexoF.checked !== true && oSexoM.checked !== true) {
 
     alert("O campo Sexo deve ser selecionado.");

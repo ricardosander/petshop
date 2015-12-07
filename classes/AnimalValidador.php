@@ -50,10 +50,6 @@ class AnimalValidador implements Validador {
             $aMensagemErro[] = "O campo Cadastro do animal é de preenchimento obrigatório.";
         }
 
-        if (empty($this->oAnimal->getObservacoes())) {
-            $aMensagemErro[] = "O campo Observações do animal é de preenchimento obrigatório.";
-        }
-
         if (empty($this->oAnimal->getSexo())) {
             $aMensagemErro[] = "O campo Sexo do animal é de preenchimento obrigatório.";
         }

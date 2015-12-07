@@ -70,7 +70,11 @@ class AnimalDao {
         $nPeso = $this->oBanco->escapeStrings($oAnimal->getPeso());
         $sNascimento = $this->oBanco->escapeStrings($oAnimal->getNascimentoFormatado());
         $sCadastro = $this->oBanco->escapeStrings($oAnimal->getCadastroFormatado());
-        $sObservacoes = $this->oBanco->escapeStrings($oAnimal->getObservacoes());
+
+        $sObservacoes = "null";
+        if (!empty($oAnimal->getObservacoes())) {
+            $sObservacoes = "'" . $this->oBanco->escapeStrings($oAnimal->getObservacoes()) . "'";
+        }
         $sSexo = $this->oBanco->escapeStrings($oAnimal->getSexo());
         $lCastrado = $oAnimal->isCastrado() ? 'true' : 'false';
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
@@ -79,7 +83,7 @@ class AnimalDao {
         $sSql .= "(nome, especie, raca, pelo, pelagem, porte, peso, nascimento, cadastro, castrado, observacoes, sexo, usuario) ";
         $sSql .= " values ";
         $sSql .= " ('{$sNome}', '{$sEpecie}', '{$sRaca}', '{$sPelo}', '{$sPelagem}', '{$sPorte}', {$nPeso}, ";
-        $sSql .= "  '{$sNascimento}', '{$sCadastro}', {$lCastrado}, '{$sObservacoes}', '{$sSexo}', {$iCodigoUsuario});";
+        $sSql .= "  '{$sNascimento}', '{$sCadastro}', {$lCastrado}, {$sObservacoes}, '{$sSexo}', {$iCodigoUsuario});";
 
         return $this->oBanco->query($sSql);
     }
@@ -122,7 +126,11 @@ class AnimalDao {
         $nPeso = $this->oBanco->escapeStrings($oAnimal->getPeso());
         $sNascimento = $this->oBanco->escapeStrings($oAnimal->getNascimentoFormatado());
         $sCadastro = $this->oBanco->escapeStrings($oAnimal->getCadastroFormatado());
-        $sObservacoes = $this->oBanco->escapeStrings($oAnimal->getObservacoes());
+
+        $sObservacoes = "null";
+        if (!empty($oAnimal->getObservacoes())) {
+            $sObservacoes = "'" . $this->oBanco->escapeStrings($oAnimal->getObservacoes()) . "'";
+        }
         $sSexo = $this->oBanco->escapeStrings($oAnimal->getSexo());
         $lCastrado = $oAnimal->isCastrado() ? 'true' : 'false';
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
@@ -130,7 +138,7 @@ class AnimalDao {
         $sSql = "update animal set ";
         $sSql .= " nome = '{$sNome}', especie = '{$sEpecie}', raca = '{$sRaca}', pelo = '{$sPelo}', ";
         $sSql .= " pelagem = '{$sPelagem}', porte = '{$sPorte}', peso = {$nPeso}, nascimento = '{$sNascimento}', ";
-        $sSql .= " cadastro = '{$sCadastro}', castrado = {$lCastrado}, observacoes = '{$sObservacoes}', ";
+        $sSql .= " cadastro = '{$sCadastro}', castrado = {$lCastrado}, observacoes = {$sObservacoes}, ";
         $sSql .= " sexo = '{$sSexo}' where id = {$iCodigo} and usuario = {$iCodigoUsuario} ;";
 
         return $this->oBanco->query($sSql);
