@@ -50,7 +50,7 @@
 
       <li class="dropdown">
         <a tabindex="0" data-toggle="dropdown" data-submenu="">
-          Usu·rios<span class="caret"></span>
+          Usu√°rios<span class="caret"></span>
         </a>
 
         <ul class="dropdown-menu">
@@ -61,7 +61,7 @@
       </li>
     </ul>
 
-    <!-- TODO colocar configuraÁıes   -->
+    <!-- TODO colocar configura√ß√µes   -->
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a tabindex="0" data-toggle="dropdown" aria-expanded="false">
@@ -73,7 +73,7 @@
           <li><a tabindex="0">Another action</a></li>
           <li><a tabindex="0">Something else here</a></li>
           <li class="divider"></li>
-          <li><a tabindex="0">Separated link</a></li>
+          <li><a href="/login/logout" tabindex="0">Deslogar</a></li>
         </ul>
       </li>
     </ul>
@@ -82,3 +82,8 @@
 
 <div class="container">
   <div class="principal">
+    <?php
+    if (!empty($sMsg)) {
+    ?>
+    <p class="alert alert-<?= $sStatus ?> "><?= $sMsg ?></p>
+    <?php } ?>

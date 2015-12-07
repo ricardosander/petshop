@@ -1,1 +1,1 @@
-<h1>Página não encontrada.</h1>
+<h1>PÃ¡gina nÃ£o encontrada.</h1>
