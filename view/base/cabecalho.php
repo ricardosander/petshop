@@ -37,42 +37,33 @@
         </ul>
       </li>
 
-      <li class="dropdown">
-        <a tabindex="0" data-toggle="dropdown" data-submenu="">
-          Clientes<span class="caret"></span>
-        </a>
+<!--      </div></li>-->
 
-        <ul class="dropdown-menu">
-          <li><a href="/clientes/cadastro/" tabindex="0">Cadastrar</a></li>
-          <li><a href="/clientes/lista/" tabindex="0">Listar</a></li>
-        </ul>
-      </li>
+<!--      <li class="dropdown">-->
+<!--        <a tabindex="0" data-toggle="dropdown" data-submenu="">-->
+<!--          Usuários<span class="caret"></span>-->
+<!--        </a>-->
 
-      <li class="dropdown">
-        <a tabindex="0" data-toggle="dropdown" data-submenu="">
-          Usuários<span class="caret"></span>
-        </a>
+<!--        <ul class="dropdown-menu">-->
+<!--          <li><a href="/usuario/cadastro" tabindex="0">Cadastrar</a></li>-->
+<!--          <li><a href="/usuario/lista/" tabindex="0">Listar</a></li>-->
+<!--        </ul>-->
 
-        <ul class="dropdown-menu">
-          <li><a href="/usuario/cadastro" tabindex="0">Cadastrar</a></li>
-          <li><a href="/usuario/lista/" tabindex="0">Listar</a></li>
-        </ul>
-
-      </li>
+<!--      </li>-->
     </ul>
 
     <!-- TODO colocar configurações   -->
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a tabindex="0" data-toggle="dropdown" aria-expanded="false">
-          Dropdown 3<span class="caret"></span>
+          Opções<span class="caret"></span>
         </a>
 
         <ul class="dropdown-menu">
-          <li><a tabindex="0">Action</a></li>
-          <li><a tabindex="0">Another action</a></li>
-          <li><a tabindex="0">Something else here</a></li>
-          <li class="divider"></li>
+<!--          <li><a tabindex="0">Action</a></li>-->
+<!--          <li><a tabindex="0">Another action</a></li>-->
+<!--          <li><a tabindex="0">Something else here</a></li>-->
+<!--          <li class="divider"></li>-->
           <li><a href="/login/logout" tabindex="0">Deslogar</a></li>
         </ul>
       </li>
