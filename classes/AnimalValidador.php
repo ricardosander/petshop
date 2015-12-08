@@ -34,7 +34,7 @@ class AnimalValidador implements Validador {
             $aMensagemErro[] = "O campo Porte do animal é de preenchimento obrigatório.";
         }
 
-        if (!is_double($this->oAnimal->getPeso())) {
+        if (!is_numeric($this->oAnimal->getPeso())) {
             $aMensagemErro[] = "O campo Peso deve ser preenchido com valor numérico.";
         }
 

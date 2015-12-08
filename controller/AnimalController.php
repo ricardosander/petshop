@@ -27,6 +27,8 @@ class AnimalController extends Controller {
             $this->redireciona("/animal/cadastro");
         }
 
+        $nPeso = Utils::stringToFloat($this->getRequisicao()->getPost('peso'));
+
         $oAnimal = new Animal();
         $oAnimal->setNome($this->getRequisicao()->getPost('nome'));
         $oAnimal->setEspecie($this->getRequisicao()->getPost('especie'));
@@ -34,7 +36,7 @@ class AnimalController extends Controller {
         $oAnimal->setPelo($this->getRequisicao()->getPost('pelo'));
         $oAnimal->setPelagem($this->getRequisicao()->getPost('pelagem'));
         $oAnimal->setPorte($this->getRequisicao()->getPost('porte'));
-        $oAnimal->setPeso($this->getRequisicao()->getPost('peso'));
+        $oAnimal->setPeso($nPeso);
         $oAnimal->setObservacoes($this->getRequisicao()->getPost('observacoes'));
         $oAnimal->setSexo($this->getRequisicao()->getPost('sexo'));
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
@@ -47,12 +49,21 @@ class AnimalController extends Controller {
 
         $aErroDatas = array();
         try {
+
+            if (count(explode("/", $sDataNascimento)) == 3) {
+                $sDataNascimento = implode("-", array_reverse(explode("/", $sDataNascimento)));
+            }
             $oDataNascimento = new DateTime($sDataNascimento);
         } catch (Exception $e) {
             $aErroDatas[] = "O campo Nascimento informado não é uma data válida.";
         }
 
         try {
+
+            if (count(explode("/", $sDataCadastro)) == 3) {
+                $sDataCadastro = implode("-", array_reverse(explode("/", $sDataCadastro)));
+            }
+
             $oDataCadastro   = new DateTime($sDataCadastro);
         } catch (Exception $e) {
             $aErroDatas[] = "O campo Cadastro informado não é uma data válida.";
@@ -77,7 +88,7 @@ class AnimalController extends Controller {
             }
 
             $this->getSessao()->setMensagemSucesso("Animal adicionado com sucesso.");
-            $this->redireciona("/animal/lista");
+            $this->redireciona("/animal/cadastro");
 
         } catch (Exception $e) {
 
@@ -104,8 +115,9 @@ class AnimalController extends Controller {
             $this->getSessao()->setMensagemErro("Animal não encontrado.");
             $this->redireciona("/animal/lista");
         }
-        $this->aDados["oAnimal"] = $oAnimal;
-        $this->aDados["sAcao"]   = "editar";
+        $this->aDados["oAnimal"]   = $oAnimal;
+        $this->aDados["sAcao"]     = "editar";
+        $this->aDados["sAcaoBotao"] = "Atualizar";
         $this->setView("cadastro");
     }
 
@@ -115,6 +127,8 @@ class AnimalController extends Controller {
             $this->redireciona("/animal/editar/");
         }
 
+        $nPeso = Utils::stringToFloat($this->getRequisicao()->getPost('peso'));
+
         $oAnimal = new Animal();
         $oAnimal->setCodigo($this->getRequisicao()->getPost("id"));
         $oAnimal->setNome($this->getRequisicao()->getPost('nome'));
@@ -123,7 +137,7 @@ class AnimalController extends Controller {
         $oAnimal->setPelo($this->getRequisicao()->getPost('pelo'));
         $oAnimal->setPelagem($this->getRequisicao()->getPost('pelagem'));
         $oAnimal->setPorte($this->getRequisicao()->getPost('porte'));
-        $oAnimal->setPeso($this->getRequisicao()->getPost('peso'));
+        $oAnimal->setPeso($nPeso);
         $oAnimal->setObservacoes($this->getRequisicao()->getPost('observacoes'));
         $oAnimal->setSexo($this->getRequisicao()->getPost('sexo'));
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
@@ -136,12 +150,22 @@ class AnimalController extends Controller {
 
         $aErroDatas = array();
         try {
+
+            if (count(explode("/", $sDataNascimento)) == 3) {
+                $sDataNascimento = implode("-", array_reverse(explode("/", $sDataNascimento)));
+            }
+
             $oDataNascimento = new DateTime($sDataNascimento);
         } catch (Exception $e) {
             $aErroDatas[] = "O campo Nascimento informado não é uma data válida.";
         }
 
         try {
+
+            if (count(explode("/", $sDataCadastro)) == 3) {
+                $sDataCadastro = implode("-", array_reverse(explode("/", $sDataCadastro)));
+            }
+
             $oDataCadastro   = new DateTime($sDataCadastro);
         } catch (Exception $e) {
             $aErroDatas[] = "O campo Cadastro informado não é uma data válida.";

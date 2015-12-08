@@ -51,21 +51,21 @@
     <div class="form-group row">
       <label for="peso" class="col-sm-2 form-control-label">Peso:</label>
       <div class="col-sm-10">
-        <input type="number" step="any" class="form-control" id="peso" name="peso" placeholder="peso" value="<?= isset($oAnimal) ? $oAnimal->getPeso() : "" ?>">
+        <input type="text" step="any" class="form-control" id="peso" name="peso" placeholder="peso" value="<?= isset($oAnimal) ? Utils::floatToString($oAnimal->getPeso()) : "" ?>">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="nascimento" class="col-sm-2 form-control-label">Nascimento:</label>
       <div class="col-sm-10">
-        <input type="date" max="2050-01-01" min="1000-01-01" class="form-control" id="nascimento" name="nascimento" placeholder="nascimento" value="<?= isset($oAnimal) ? $oAnimal->getNascimentoFormatado() : "" ?>">
+        <input type="text" class="form-control" id="nascimento" name="nascimento" placeholder="nascimento" value="<?= isset($oAnimal) ? $oAnimal->getNascimentoFormatado("d/m/Y") : "" ?>">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="cadatro" class="col-sm-2 form-control-label">Cadastro:</label>
       <div class="col-sm-10">
-        <input type="date" max="2050-01-01" min="1000-01-01" class="form-control" id="cadastro" name="cadastro" placeholder="cadastro" value="<?= isset($oAnimal) ? $oAnimal->getCadastroFormatado() : "" ?>">
+        <input type="text" class="form-control" id="cadastro" name="cadastro" placeholder="cadastro" value="<?= isset($oAnimal) ? $oAnimal->getCadastroFormatado("d/m/Y") : "" ?>">
       </div>
     </div>
 
@@ -104,6 +104,6 @@
     </div>
 
     <a href="<?= $sUltimaUri == $sUri ? "/animal/lista" : $sUltimaUri ?>" class="btn btn-default">Voltar</a>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary"> <?= isset($sAcaoBotao) ? $sAcaoBotao : "Cadastrar"?></button>
   </form>
 </fieldset>

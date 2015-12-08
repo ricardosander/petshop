@@ -246,7 +246,7 @@ class Animal {
      * @param number $nPeso
      */
     public function setPeso($nPeso) {
-        $this->nPeso = (double) $nPeso;
+        $this->nPeso = $nPeso;
     }
 
     /**

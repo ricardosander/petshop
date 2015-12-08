@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>Peso:</td>
-            <td><?= $oAnimal->getPeso() ?></td>
+            <td><?= Utils::floatToString($oAnimal->getPeso()) ?></td>
         </tr>
         <tr>
             <td>Nascimento:</td>
