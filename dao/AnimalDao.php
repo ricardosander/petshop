@@ -76,14 +76,15 @@ class AnimalDao {
             $sObservacoes = "'" . $this->oBanco->escapeStrings($oAnimal->getObservacoes()) . "'";
         }
         $sSexo = $this->oBanco->escapeStrings($oAnimal->getSexo());
-        $lCastrado = $oAnimal->isCastrado() ? 'true' : 'false';
+        $lCastrado      = $oAnimal->isCastrado() ? 'true' : 'false';
+        $lClientePacote = $oAnimal->isClientePacote() ? 'true' : 'false';
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
 
         $sSql = "insert into animal ";
-        $sSql .= "(nome, especie, raca, pelo, pelagem, porte, peso, nascimento, cadastro, castrado, observacoes, sexo, usuario) ";
+        $sSql .= "(nome, especie, raca, pelo, pelagem, porte, peso, nascimento, cadastro, castrado, observacoes, sexo, usuario, cliente_pacote) ";
         $sSql .= " values ";
         $sSql .= " ('{$sNome}', '{$sEpecie}', '{$sRaca}', '{$sPelo}', '{$sPelagem}', '{$sPorte}', {$nPeso}, ";
-        $sSql .= "  '{$sNascimento}', '{$sCadastro}', {$lCastrado}, {$sObservacoes}, '{$sSexo}', {$iCodigoUsuario});";
+        $sSql .= "  '{$sNascimento}', '{$sCadastro}', {$lCastrado}, {$sObservacoes}, '{$sSexo}', {$iCodigoUsuario}, {$lClientePacote});";
 
         return $this->oBanco->query($sSql);
     }
@@ -106,6 +107,7 @@ class AnimalDao {
         $oAnimal->setNascimento(new DateTime($oStd->nascimento));
         $oAnimal->setCadastro(new DateTime($oStd->cadastro));
         $oAnimal->setCastrado($oStd->castrado);
+        $oAnimal->setClientePacote($oStd->cliente_pacote);
         $oAnimal->setObservacoes($oStd->observacoes);
         $oAnimal->setSexo($oStd->sexo);
 
@@ -132,14 +134,15 @@ class AnimalDao {
             $sObservacoes = "'" . $this->oBanco->escapeStrings($oAnimal->getObservacoes()) . "'";
         }
         $sSexo = $this->oBanco->escapeStrings($oAnimal->getSexo());
-        $lCastrado = $oAnimal->isCastrado() ? 'true' : 'false';
+        $lCastrado      = $oAnimal->isCastrado() ? 'true' : 'false';
+        $lClientePacote = $oAnimal->isClientePacote() ? 'true' : 'false';
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
 
         $sSql = "update animal set ";
         $sSql .= " nome = '{$sNome}', especie = '{$sEpecie}', raca = '{$sRaca}', pelo = '{$sPelo}', ";
         $sSql .= " pelagem = '{$sPelagem}', porte = '{$sPorte}', peso = {$nPeso}, nascimento = '{$sNascimento}', ";
         $sSql .= " cadastro = '{$sCadastro}', castrado = {$lCastrado}, observacoes = {$sObservacoes}, ";
-        $sSql .= " sexo = '{$sSexo}' where id = {$iCodigo} and usuario = {$iCodigoUsuario} ;";
+        $sSql .= " sexo = '{$sSexo}', cliente_pacote = {$lClientePacote} where id = {$iCodigo} and usuario = {$iCodigoUsuario} ;";
 
         return $this->oBanco->query($sSql);
     }

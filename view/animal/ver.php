@@ -3,7 +3,7 @@
     <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>
     <a class="btn btn-danger" href="/animal/excluir/<?= $oAnimal->getCodigo() ?>">Excluir</a>
 </div>
-<div class="col-lg-4">
+<div class="col-lg-5">
     <table class="table">
         <thead>
         <tr>
@@ -57,6 +57,10 @@
         <tr>
             <td>Castrado:</td>
             <td><?= $oAnimal->isCastrado() ? "Sim" : "Não" ?></td>
+        </tr>
+        <tr>
+            <td>Cliente com pacote:</td>
+            <td><?= $oAnimal->isClientePacote() ? "Sim" : "Não" ?></td>
         </tr>
         <tr>
             <td>Sexo:</td>

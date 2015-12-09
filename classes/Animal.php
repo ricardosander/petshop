@@ -68,6 +68,11 @@ class Animal {
     private $sSexo;
 
     /**
+     * @var boolean
+     */
+    private $lClientePacote;
+
+    /**
      * @param integer $iCodigo
      */
     public function __construct($iCodigo = null) {
@@ -180,6 +185,13 @@ class Animal {
     }
 
     /**
+     * @return bool
+     */
+    public function isClientePacote() {
+        return $this->lClientePacote;
+    }
+
+    /**
      * @return string
      */
     public function getObservacoes() {
@@ -282,5 +294,12 @@ class Animal {
      */
     public function setSexo($sSexo) {
         $this->sSexo = $sSexo;
+    }
+
+    /**
+     * @param boolean $lClientePacote
+     */
+    public function setClientePacote($lClientePacote) {
+        $this->lClientePacote = $lClientePacote;
     }
 }

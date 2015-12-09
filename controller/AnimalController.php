@@ -40,6 +40,7 @@ class AnimalController extends Controller {
         $oAnimal->setObservacoes($this->getRequisicao()->getPost('observacoes'));
         $oAnimal->setSexo($this->getRequisicao()->getPost('sexo'));
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
+        $oAnimal->setClientePacote($this->getRequisicao()->isSetPost('temPacote'));
 
         $sDataNascimento = $this->getRequisicao()->getPost('nascimento');
         $sDataCadastro   = $this->getRequisicao()->getPost('cadastro');
@@ -141,6 +142,7 @@ class AnimalController extends Controller {
         $oAnimal->setObservacoes($this->getRequisicao()->getPost('observacoes'));
         $oAnimal->setSexo($this->getRequisicao()->getPost('sexo'));
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
+        $oAnimal->setClientePacote($this->getRequisicao()->isSetPost('temPacote'));
 
         $sDataNascimento = $this->getRequisicao()->getPost('nascimento');
         $sDataCadastro   = $this->getRequisicao()->getPost('cadastro');
