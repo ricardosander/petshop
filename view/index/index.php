@@ -1,6 +1,10 @@
 <h1>Bem vindo ao sistema petshop web</h1>
 
 <p class="alert alert-success">
+    09/12/2015 22:40 - Adicionado recurso de paginação a listagem de animais.
+</p>
+
+<p class="alert alert-warning">
     08/12/2015 22:00 - Adicionado campo (checkbox) para informar se o animal possui pacote (cliente pacote) no cadastro
     de animal. Alguns ajustes no leiaute.
 </p>

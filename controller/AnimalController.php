@@ -280,7 +280,7 @@ class AnimalController extends Controller {
     public function lista() {
 
         $sWhere = "";
-        if ($this->getRequisicao()->isGet("busca")) {
+        if ($this->getRequisicao()->isSetGet("busca")) {
 
             $sBuscaNome = trim($this->getRequisicao()->getGet("nomeBusca"));
             $this->aDados['sBuscaNome'] = $sBuscaNome;
@@ -292,12 +292,31 @@ class AnimalController extends Controller {
             $sWhere = " nome like '%{$sWhere}%' ";
         }
 
+        $iPagina    = 1;
+        $iPorPagina = 10;
         try {
 
             $oDaoAniamis = new AnimalDao();
-            $aAnimais = $oDaoAniamis->buscarTodos($this->getSessao()->getUsuarioLogado()->getCodigo(), $sWhere);
+            $iTotal      = $oDaoAniamis->contarTodos($this->getSessao()->getUsuarioLogado()->getCodigo(), $sWhere);
 
-            $this->aDados['aAnimais'] = $aAnimais;
+            if (count($this->getRequisicao()->getParametros()) > 0) {
+
+                $iPagina = $this->getRequisicao()->getParametros()[0];
+                if (empty($iPagina) || $iPagina < 1) {
+                    $iPagina = 1;
+                }
+            }
+            $oPaginacao = new AnimalPaginacao($iPorPagina, $iTotal, $iPagina);
+            if ($this->getRequisicao()->isSetGet("busca")) {
+
+                $aBuscaNome              = array();
+                $aBuscaNome['nomeBusca'] = trim($this->getRequisicao()->getGet("nomeBusca"));
+                $oPaginacao->setParametros($aBuscaNome);
+            }
+            $aAnimais = $oDaoAniamis->buscarTodos($this->getSessao()->getUsuarioLogado()->getCodigo(), $sWhere, $oPaginacao);
+
+            $this->aDados['aAnimais']   = $aAnimais;
+            $this->aDados['oPaginacao'] = $oPaginacao;
 
         } catch (Exception $e) {
             die($e->getMessage());

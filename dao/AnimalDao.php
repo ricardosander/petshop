@@ -19,11 +19,41 @@ class AnimalDao {
         return $this->oBanco->escapeStrings($sString);
     }
 
-    public function buscarTodos($iCodigoUsuario, $sWhere) {
+    public function contarTodos($iCodigoUsuario, $sWhere) {
 
         $this->oBanco->conectar();
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
-        $sSqlBuscar = "select * from animal where usuario = {$iCodigoUsuario} and ({$sWhere})";
+        $sSqlBuscar = "select count(id) as total from animal where usuario = {$iCodigoUsuario} ";
+
+        if (!empty($sWhere)) {
+            $sSqlBuscar .= " and ({$sWhere}) ";
+        }
+
+        $rsAnimais = $this->oBanco->query($sSqlBuscar);
+        $iNumeroAnimais = $this->oBanco->numeroLinhas($rsAnimais);
+
+        if ($iNumeroAnimais !== 1) {
+            throw new Exception("Houve um erro ao buscar os animais. Avise o suporte.");
+        }
+
+        $oRegistros = $this->oBanco->getResgitro($rsAnimais, 0);
+        return $oRegistros->total;
+    }
+
+    public function buscarTodos($iCodigoUsuario, $sWhere, AnimalPaginacao $oPaginacao = null) {
+
+        $this->oBanco->conectar();
+        $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
+        $sSqlBuscar = "select * from animal where usuario = {$iCodigoUsuario} ";
+
+        if (!empty($sWhere)) {
+            $sSqlBuscar .= " and ({$sWhere}) ";
+        }
+
+        if (!is_null($oPaginacao)) {
+            $sSqlBuscar .= $oPaginacao->getSql();
+        }
+
         $rsAnimais = $this->oBanco->query($sSqlBuscar);
         $iNumeroAnimais = $this->oBanco->numeroLinhas($rsAnimais);
 

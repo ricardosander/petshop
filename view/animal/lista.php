@@ -52,6 +52,7 @@
     }
     ?>
 </table>
+    <?= $oPaginacao->getPaginacao(); ?>
 <?php } else { ?>
 <p class="text-info">Nenhum animal encontrado!</p>
 <?php } ?>
