@@ -19,6 +19,7 @@ class AnimalController extends Controller {
             $this->aDados['oAnimal'] = $this->getSessao()->getObjeto("animal");
             $this->getSessao()->removeObjeto("animal");
         }
+        $this->aScripts[] = "../../js/jquery.maskedinput.js";
     }
 
     public function cadastroPost() {
@@ -42,41 +43,17 @@ class AnimalController extends Controller {
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
         $oAnimal->setClientePacote($this->getRequisicao()->isSetPost('temPacote'));
 
-        $sDataNascimento = $this->getRequisicao()->getPost('nascimento');
-        $sDataCadastro   = $this->getRequisicao()->getPost('cadastro');
-
-        $oDataNascimento = null;
-        $oDataCadastro   = null;
-
-        $aErroDatas = array();
-        try {
-
-            if (count(explode("/", $sDataNascimento)) == 3) {
-                $sDataNascimento = implode("-", array_reverse(explode("/", $sDataNascimento)));
-            }
-            $oDataNascimento = new DateTime($sDataNascimento);
-        } catch (Exception $e) {
-            $aErroDatas[] = "O campo Nascimento informado não é uma data válida.";
-        }
-
-        try {
-
-            if (count(explode("/", $sDataCadastro)) == 3) {
-                $sDataCadastro = implode("-", array_reverse(explode("/", $sDataCadastro)));
-            }
-
-            $oDataCadastro   = new DateTime($sDataCadastro);
-        } catch (Exception $e) {
-            $aErroDatas[] = "O campo Cadastro informado não é uma data válida.";
-        }
-
-        $oAnimal->setNascimento($oDataNascimento);
-        $oAnimal->setCadastro($oDataCadastro);
+        $sDataNascimento = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('nascimento'))));
+        $sDataCadastro   = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('cadastro'))));
 
         try {
 
             $oValidador = new AnimalValidador();
-            $oValidador->setDados($oAnimal);
+            $oValidador->setDados(array(
+                "animal" => $oAnimal,
+                "data_nascimento" => $sDataNascimento,
+                "data_cadastro"   => $sDataCadastro)
+            );
             $oValidador->validar();
 
             if (!empty($aErroDatas)) {
@@ -119,6 +96,7 @@ class AnimalController extends Controller {
         $this->aDados["oAnimal"]   = $oAnimal;
         $this->aDados["sAcao"]     = "editar";
         $this->aDados["sAcaoBotao"] = "Atualizar";
+        $this->aScripts[] = "../../js/jquery.maskedinput.js";
         $this->setView("cadastro");
     }
 
@@ -144,43 +122,21 @@ class AnimalController extends Controller {
         $oAnimal->setCastrado($this->getRequisicao()->isSetPost('castrado'));
         $oAnimal->setClientePacote($this->getRequisicao()->isSetPost('temPacote'));
 
-        $sDataNascimento = $this->getRequisicao()->getPost('nascimento');
-        $sDataCadastro   = $this->getRequisicao()->getPost('cadastro');
-
-        $oDataNascimento = null;
-        $oDataCadastro   = null;
-
-        $aErroDatas = array();
-        try {
-
-            if (count(explode("/", $sDataNascimento)) == 3) {
-                $sDataNascimento = implode("-", array_reverse(explode("/", $sDataNascimento)));
-            }
-
-            $oDataNascimento = new DateTime($sDataNascimento);
-        } catch (Exception $e) {
-            $aErroDatas[] = "O campo Nascimento informado não é uma data válida.";
-        }
-
-        try {
-
-            if (count(explode("/", $sDataCadastro)) == 3) {
-                $sDataCadastro = implode("-", array_reverse(explode("/", $sDataCadastro)));
-            }
-
-            $oDataCadastro   = new DateTime($sDataCadastro);
-        } catch (Exception $e) {
-            $aErroDatas[] = "O campo Cadastro informado não é uma data válida.";
-        }
-
-        $oAnimal->setNascimento($oDataNascimento);
-        $oAnimal->setCadastro($oDataCadastro);
+        $sDataNascimento = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('nascimento'))));
+        $sDataCadastro   = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('cadastro'))));
 
         try {
 
             $oValidador = new AnimalValidador();
-            $oValidador->setDados($oAnimal);
+            $oValidador->setDados(array(
+                'animal' => $oAnimal,
+                'data_cadastro' => $sDataCadastro,
+                'data_nascimento' => $sDataNascimento)
+            );
             $oValidador->validar();
+
+            $oAnimal->setCadastro(new DateTime($sDataCadastro));
+            $oAnimal->setNascimento(new DateTime($sDataNascimento));
 
             if (empty($oAnimal->getCodigo())) {
                 throw new Exception("Animal não identificado para a edição.");

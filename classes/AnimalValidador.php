@@ -6,6 +6,8 @@ class AnimalValidador implements Validador {
      * @var Animal
      */
     private $oAnimal;
+    private $sDataNascimento;
+    private $sDataCadastro;
 
     public function validar() {
 
@@ -42,12 +44,26 @@ class AnimalValidador implements Validador {
             $aMensagemErro[] = "O campo Peso do animal é de preenchimento obrigatório e deve ser maior que zero.";
         }
 
-        if (empty($this->oAnimal->getNascimento())) {
+        if (empty($this->sDataNascimento)) {
             $aMensagemErro[] = "O campo Nascimento do animal é de preenchimento obrigatório.";
         }
 
-        if (empty($this->oAnimal->getCadastro())) {
+        $aDataNascimento = explode("-", $this->sDataNascimento);
+        if (count($aDataNascimento) != 3 || !checkdate($aDataNascimento[1], $aDataNascimento[2], $aDataNascimento[0])) {
+            $aMensagemErro[] = "O campo Nascimento deve ser uma data válida.";
+        } else {
+            $this->oAnimal->setNascimento(new DateTime($this->sDataNascimento));
+        }
+
+        if (empty($this->sDataCadastro)) {
             $aMensagemErro[] = "O campo Cadastro do animal é de preenchimento obrigatório.";
+        }
+
+        $aDataCadastro  = explode("-", $this->sDataCadastro);
+        if (count($aDataCadastro) != 3 || !checkdate($aDataCadastro[1], $aDataCadastro[2], $aDataCadastro[0])) {
+            $aMensagemErro[] = "O campo Cadastro deve ser uma data válida.";
+        } else {
+            $this->oAnimal->setCadastro(new DateTime($this->sDataCadastro));
         }
 
         if (empty($this->oAnimal->getSexo())) {
@@ -60,9 +76,12 @@ class AnimalValidador implements Validador {
     }
 
     /**
-     * @param $oAnimao
+     * @param $aDados
      */
-    public function setDados($oAnimao) {
-        $this->oAnimal = $oAnimao;
+    public function setDados($aDados) {
+
+        $this->oAnimal         = isset($aDados['animal'])          ? $aDados['animal']          : "";
+        $this->sDataCadastro   = isset($aDados['data_cadastro'])   ? $aDados['data_cadastro']   : "";
+        $this->sDataNascimento = isset($aDados['data_nascimento']) ? $aDados['data_nascimento'] : "";
     }
 }
