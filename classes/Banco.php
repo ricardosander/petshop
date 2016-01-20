@@ -1,6 +1,9 @@
 <?php
 interface Banco {
 
+  public function iniciaTransacao();
+  public function encerraTransacao($lErro);
+  public function temTransacao();
   public function conectar();
   public function query($sSql);
   public function numeroLinhas($rsQuery);

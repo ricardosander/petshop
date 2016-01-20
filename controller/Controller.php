@@ -61,14 +61,17 @@ abstract class Controller {
 
     public function __construct() {
 
-        $this->aCss[] = "../../css/bootstrap.css";
-        $this->aCss[] = "../../css/bootstrap-theme.css";
-        $this->aCss[] = "../../css/bootstrap-submenu.css";
-        $this->aCss[] = "../../css/petshop.css";
 
-        $this->aScripts[] = "../../js/jquery.min.js";
-        $this->aScripts[] = "../../js/bootstrap.js";
-        $this->aScripts[] = "../../js/bootstrap-submenu.js";
+        $sCaminho = "http://".$_SERVER['HTTP_HOST'];
+
+        $this->aCss[] = "{$sCaminho}/css/bootstrap.css";
+        $this->aCss[] = "{$sCaminho}/css/bootstrap-theme.css";
+        $this->aCss[] = "{$sCaminho}/css/bootstrap-submenu.css";
+        $this->aCss[] = "{$sCaminho}/css/petshop.css";
+
+        $this->aScripts[] = "{$sCaminho}/js/jquery.min.js";
+        $this->aScripts[] = "{$sCaminho}/js/bootstrap.js";
+        $this->aScripts[] = "{$sCaminho}/js/bootstrap-submenu.js";
         $this->oRequisicao = new Requisicao($_SERVER, $_REQUEST);
         $this->oSessao     = new Sessao();
     }
