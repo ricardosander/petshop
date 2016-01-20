@@ -73,11 +73,29 @@ class Animal {
     private $lClientePacote;
 
     /**
+     * @var integer
+     */
+    private $iUsuario;
+
+    /**
+     * @var Cliente
+     */
+    private $oCliente;
+
+    /**
      * @param integer $iCodigo
      */
     public function __construct($iCodigo = null) {
 
-        //TODO fazer leazy load
+        if (!empty($iCodigo)) {
+
+            $oDaoAnimal = new AnimalEntidadeDao();
+            $lRetorno   = $oDaoAnimal->buscarPorCodigo($iCodigo, "", $this);
+
+            if ($lRetorno === false) {
+                throw new Exception("Animal não encontrado.");
+            }
+        }
     }
 
     /**
@@ -206,6 +224,20 @@ class Animal {
     }
 
     /**
+     * @return int
+     */
+    public function getUsuario() {
+        return $this->iUsuario;
+    }
+
+    /**
+     * @return Cliente
+     */
+    public function getCliente() {
+        return $this->oCliente;
+    }
+
+    /**
      * @param integer $iCodigo
      */
     public function setCodigo($iCodigo) {
@@ -301,5 +333,19 @@ class Animal {
      */
     public function setClientePacote($lClientePacote) {
         $this->lClientePacote = $lClientePacote;
+    }
+
+    /**
+     * @param integer $iUsuario
+     */
+    public function setUsuario($iUsuario) {
+        $this->iUsuario = $iUsuario;
+    }
+
+    /**
+     * @param Cliente $oCliente
+     */
+    public function setCliente($oCliente) {
+        $this->oCliente = $oCliente;
     }
 }
