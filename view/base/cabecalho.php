@@ -37,6 +37,19 @@
         </ul>
       </li>
 
+
+            <li class="dropdown">
+              <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                Clientes<span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a href="/cliente/cadastro" tabindex="0">Cadastrar</a></li>
+                <li><a href="/cliente/lista/" tabindex="0">Listar</a></li>
+              </ul>
+
+            </li>
+
 <!--      </div></li>-->
 
 <!--      <li class="dropdown">-->
