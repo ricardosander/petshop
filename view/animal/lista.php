@@ -43,16 +43,20 @@
                 <?= $oAnimal->getRaca() ?>
             </td>
             <td>
-                <a class="btn btn-success" href="/animal/ver/<?= $oAnimal->getCodigo() ?>">Ver</a>
-                <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>
-                <a class="btn btn-danger" href="/animal/excluir/<?= $oAnimal->getCodigo() ?>">Excluir</a>
+                <?php if ($selecao) { ?>
+                    <a class="btn btn-default" href="/animal/seleciona/<?= $oAnimal->getCodigo() ?>/<?= $vinculo ?>/<?= $codigoVinculo ?>">Selecionar</a>
+                <?php } else { ?>
+                    <a class="btn btn-success" href="/animal/ver/<?= $oAnimal->getCodigo() ?>">Ver</a>
+                    <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>
+                    <a class="btn btn-danger" href="/animal/excluir/<?= $oAnimal->getCodigo() ?>">Excluir</a>
+                <?php } ?>
             </td>
         </tr>
         <?php
     }
     ?>
 </table>
-    <?= $oPaginacao->getPaginacao(); ?>
+    <?= isset($oPaginacao) ? $oPaginacao->getPaginacao() : "" ?>
 <?php } else { ?>
 <p class="text-info">Nenhum animal encontrado!</p>
 <?php } ?>

@@ -2,6 +2,7 @@
   <legend>Cadastro de Animal</legend>
   <form method="post" action="/animal/<?= isset($sAcao) ? $sAcao : "cadastro" ?>" onsubmit="return validarCadastroAnimal();">
 
+    <input type="hidden" name="codigo_cliente" value="<?= isset($codigo_cliente) ? $codigo_cliente : "" ?>" />
       <?php if (isset($oAnimal) && !empty($oAnimal->getCodigo())) { ?>
           <input type="hidden" name="id" value="<?= $oAnimal->getCodigo() ?>" />
       <?php } ?>
