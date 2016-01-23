@@ -1,6 +1,6 @@
 <html>
 <head>
-
+  <title>Meu Pet</title>
   <?php  foreach ($aCss as $sCss) { ?>
   <link href="<?= $sCss ?>" type="text/css" rel="stylesheet" >
   <?php } ?>

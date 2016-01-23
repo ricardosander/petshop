@@ -15,10 +15,6 @@ class ClienteValidator implements Validador {
             $aMensagemErro[] = "Campo Nome é de preenchimento obrigatório.";
         }
 
-        if (empty($this->oCliente->getEndereco())) {
-            $aMensagemErro[] = "Campo Enredeço é de prenechimento obrigatório.";
-        }
-
         if (empty($this->oCliente->getBairro())) {
             $aMensagemErro[] = "Campo Bairro é de preenchimento obrigatório.";
         }

@@ -34,7 +34,7 @@ class ClienteEntidadeDao extends EntidadeDao {
                               'coluna'            => 'endereco',
                               'atributo'          => 'endereco',
                               'tipo'              => TipoDado::STRING,
-                              'nulo'              => false,
+                              'nulo'              => true,
                               'chave_primaria'    => false,
                               'chave_estrangeira' => false
                              ),

@@ -25,7 +25,6 @@ function validarTelefone(sTelefone) {
 function validarCadastroCliente() {
 
     var oNome         = document.getElementById("nome");
-    var oEndereco     = document.getElementById("endereco");
     var oBairro       = document.getElementById("bairro");
     var oTelefone     = document.getElementById("telefone");
     var oTelefone2    = document.getElementById("telefone2");
@@ -38,13 +37,6 @@ function validarCadastroCliente() {
 
         alert("O campo Nome é de preenchimento obrigatório.");
         oNome.focus();
-        return false;
-    }
-
-    if (!oEndereco.value) {
-
-        alert("O campo Endereço é de preenchimento obrigatório.");
-        oEndereco.focus();
         return false;
     }
 
