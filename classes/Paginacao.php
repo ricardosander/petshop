@@ -6,7 +6,7 @@
  */
 interface Paginacao {
 
-    public function __construct($iRegistrosPorPagina, $iTotalRegistros, $iPagina);
+    public function __construct($sModulo, $iRegistrosPorPagina, $iTotalRegistros, $iPagina);
 
     /**
      * Retorna a quantidade de registros das páginas anteriores a atual.

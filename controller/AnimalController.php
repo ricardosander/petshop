@@ -336,8 +336,8 @@ class AnimalController extends Controller {
 
   public function lista() {
 
-    $sWhere = "";
-    $iPagina = 1;
+    $sWhere     = "";
+    $iPagina    = 1;
     $iPorPagina = 10;
     $oDao = new AnimalEntidadeDao();
     try {
@@ -365,7 +365,7 @@ class AnimalController extends Controller {
           $iPagina = 1;
         }
       }
-      $oPaginacao = new AnimalPaginacao($iPorPagina, $iTotal, $iPagina);
+      $oPaginacao = new PaginacaoSimples("animal", $iPorPagina, $iTotal, $iPagina);
       if ($this->getRequisicao()->isSetGet("busca")) {
 
         $aBuscaNome = array();

@@ -1,6 +1,6 @@
 <?php
 
-class AnimalPaginacao implements Paginacao {
+class PaginacaoSimples implements Paginacao {
 
     /**
      * @var int Número de registros por página.
@@ -23,11 +23,12 @@ class AnimalPaginacao implements Paginacao {
      */
     private $aParametros;
 
-    public function __construct($iRegistrosPorPagina, $iTotalRegistros, $iPagina) {
+    public function __construct($sModulo, $iRegistrosPorPagina, $iTotalRegistros, $iPagina) {
 
         $this->iRegistrosPorPagina = $iRegistrosPorPagina;
         $this->iTotalRegistros     = $iTotalRegistros;
         $this->iPagina             = $iPagina;
+        $this->sModulo             = $sModulo;
     }
 
     public function getOffset() {
@@ -63,7 +64,7 @@ class AnimalPaginacao implements Paginacao {
 
         for ($i = 1; $i <= $iTotalPaginas; $i++) {
 
-            $sLink  = "/animal/lista/{$i}";
+            $sLink  = "/{$this->sModulo}/lista/{$i}";
             $sClass = "";
 
             if ($i == $this->iPagina) {

@@ -39,7 +39,7 @@
             }
             ?>
         </table>
-        <?= "" /*$oPaginacao->getPaginacao();*/ ?>
+        <?= $oPaginacao->getPaginacao(); ?>
     <?php } else { ?>
         <p class="text-info">Nenhum cliente encontrado!</p>
     <?php } ?>

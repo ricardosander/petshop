@@ -15,13 +15,28 @@ class ClienteController extends Controller {
 
   public function lista() {
 
+    $iPagina    = 1;
+    $iPorPagina = 10;
     try {
+
       $oDao = new ClienteEntidadeDao();
       $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
-      $aClientes = $oDao->buscar("*", $sWhere);
+      $iTotal = $oDao->contar($sWhere);
 
-      $this->aDados['selecao'] = false;
-      $this->aDados['aClientes'] = $aClientes;
+      if (count($this->getRequisicao()->getParametros()) > 0) {
+
+        $iPagina = $this->getRequisicao()->getParametros()[0];
+        if (empty($iPagina) || $iPagina < 1) {
+          $iPagina = 1;
+        }
+      }
+      $oPaginacao = new PaginacaoSimples("cliente", $iPorPagina, $iTotal, $iPagina);
+
+      $aClientes = $oDao->buscar("*", $sWhere, $oPaginacao);
+
+      $this->aDados['selecao']    = false;
+      $this->aDados['aClientes']  = $aClientes;
+      $this->aDados['oPaginacao'] = $oPaginacao;
     } catch (Exception $e) {
       die($e->getMessage());
     }

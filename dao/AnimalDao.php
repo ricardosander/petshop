@@ -40,7 +40,7 @@ class AnimalDao {
         return $oRegistros->total;
     }
 
-    public function buscarTodos($iCodigoUsuario, $sWhere, AnimalPaginacao $oPaginacao = null) {
+    public function buscarTodos($iCodigoUsuario, $sWhere, Paginacao $oPaginacao = null) {
 
         $this->oBanco->conectar();
         $iCodigoUsuario = $this->oBanco->escapeStrings($iCodigoUsuario);
