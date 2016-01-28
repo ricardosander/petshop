@@ -131,7 +131,7 @@ class AnimalController extends Controller {
     $oAnimal->setClientePacote($this->getRequisicao()->isSetPost('temPacote'));
     $oAnimal->setUsuario($this->getSessao()->getUsuarioLogado()->getCodigo());
 
-    $sDestino = "/animal/cadastro";
+    $sDestino = null;
     if ($this->getRequisicao()->isSetPost("codigo_cliente")
       && !empty($this->getRequisicao()->getPost("codigo_cliente"))
     ) {
@@ -164,6 +164,10 @@ class AnimalController extends Controller {
       }
 
       $this->getSessao()->setMensagemSucesso("Animal adicionado com sucesso.");
+
+      if (empty($sDestino)) {
+        $sDestino = "/cliente/cadastro?animal={$oAnimal->getCodigo()}";
+      }
       $this->redireciona($sDestino);
 
     } catch (Exception $e) {

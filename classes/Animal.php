@@ -356,7 +356,9 @@ class Animal {
      * @param Cliente $oCliente
      */
     public function setCliente($oCliente) {
-        $this->oCliente = $oCliente;
+
+      $this->oCliente       = $oCliente;
+      $this->iCodigoCliente = $oCliente->getCodigo();
     }
 
     /**
