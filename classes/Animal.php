@@ -83,7 +83,13 @@ class Animal {
     private $oCliente;
 
     /**
+     * @var int
+     */
+    private $iCodigoCliente;
+
+    /**
      * @param integer $iCodigo
+     * @throws Exception
      */
     public function __construct($iCodigo = null) {
 
@@ -234,6 +240,10 @@ class Animal {
      * @return Cliente
      */
     public function getCliente() {
+
+        if (empty($this->oCliente) && !empty($this->iCodigoCliente)) {
+            $this->oCliente = new Cliente($this->iCodigoCliente);
+        }
         return $this->oCliente;
     }
 
@@ -347,5 +357,19 @@ class Animal {
      */
     public function setCliente($oCliente) {
         $this->oCliente = $oCliente;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCodigoCliente() {
+        return $this->iCodigoCliente;
+    }
+
+    /**
+     * @param $iCliente
+     */
+    public function setCodigoCliente($iCliente) {
+        $this->iCodigoCliente = $iCliente;
     }
 }

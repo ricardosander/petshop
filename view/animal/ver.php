@@ -71,12 +71,12 @@
 <div class="col-lg-5">
     <table class="table">
         <thead>
-            <tr>
-                <th>Informações do Cliente</th>
-            </tr>
+        <tr>
+            <th>Informações do Cliente</th>
+        </tr>
         </thead>
         <tbody>
-            <?php if (is_null($oAnimal->getCliente())) { ?>
+        <?php if (empty($oAnimal->getCliente())) { ?>
             <tr>
                 <td>
                     <span class="text-danger">Sem cliente cadastrado</span><br>
@@ -84,31 +84,31 @@
                     <a href="/cliente/selecionar/animal/<?= $oAnimal->getCodigo() ?>" class="btn btn-default">Selecionar </a>
                 </td>
             </tr>
-            <?php } ?>
-            <?php if (!is_null($oAnimal->getCliente())) { ?>
-                <tr>
-                    <td>Nome:</td>
-                    <td><?= $oAnimal->getCliente()->getNome() ?></td>
-                </tr>
-                <tr>
-                    <td>Endereço:</td>
-                    <td><?= $oAnimal->getCliente()->getEndereco() ?></td>
-                </tr>
-                <tr>
-                    <td>Telefone Principal:</td>
-                    <td><?= $oAnimal->getCliente()->getTelefone() ?></td>
-                </tr>
-                <tr>
-                    <td>Saldo Devedor:</td>
-                    <td><?= Utils::floatToString($oAnimal->getCliente()->getSaldoDevedor()) ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <a class="btn btn-primary" href="/cliente/ver/<?= $oAnimal->getCliente()->getCodigo() ?>">Ver Cliente</a>
-                        <a href="/cliente/selecionar/animal/<?= $oAnimal->getCodigo() ?>" class="btn btn-default">Alterar Cliente </a>
-                    </td>
-                </tr>
-            <?php } ?>
+        <?php } ?>
+        <?php if (!empty($oAnimal->getCliente())) { ?>
+            <tr>
+                <td>Nome:</td>
+                <td><?= $oAnimal->getCliente()->getNome() ?></td>
+            </tr>
+            <tr>
+                <td>Endereço:</td>
+                <td><?= $oAnimal->getCliente()->getEndereco() ?></td>
+            </tr>
+            <tr>
+                <td>Telefone Principal:</td>
+                <td><?= $oAnimal->getCliente()->getTelefone() ?></td>
+            </tr>
+            <tr>
+                <td>Saldo Devedor:</td>
+                <td><?= Utils::floatToString($oAnimal->getCliente()->getSaldoDevedor()) ?></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a class="btn btn-primary" href="/cliente/ver/<?= $oAnimal->getCliente()->getCodigo() ?>">Ver Cliente</a>
+                    <a href="/cliente/selecionar/animal/<?= $oAnimal->getCodigo() ?>" class="btn btn-default">Alterar Cliente </a>
+                </td>
+            </tr>
+        <?php } ?>
         </tbody>
     </table>
 </div>

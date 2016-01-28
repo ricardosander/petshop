@@ -16,49 +16,53 @@
 
 
 <div class="col-sm-12">
-<?php if(count($aAnimais) > 0)  { ?>
-<h1>Lista de Animais</h1>
-<table class="table table-bordered table-striped table-hover">
-    <tr>
-        <td>Código</td>
-        <td>Animal</td>
-        <td>Espécie</td>
-        <td>Raça</td>
-        <td>Ações</td>
-    </tr>
-    <?php
-    foreach ($aAnimais as $oAnimal) {
-        ?>
-        <tr>
-            <td>
-                <?= $oAnimal->getCodigo() ?>
-            </td>
-            <td>
-                <?= $oAnimal->getNome() ?>
-            </td>
-            <td>
-                <?= $oAnimal->getEspecie() ?>
-            </td>
-            <td>
-                <?= $oAnimal->getRaca() ?>
-            </td>
-            <td>
-                <?php if ($selecao) { ?>
-                    <a class="btn btn-default" href="/animal/seleciona/<?= $oAnimal->getCodigo() ?>/<?= $vinculo ?>/<?= $codigoVinculo ?>">Selecionar</a>
-                <?php } else { ?>
-                    <a class="btn btn-success" href="/animal/ver/<?= $oAnimal->getCodigo() ?>">Ver</a>
-                    <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>
-                    <a class="btn btn-danger" href="/animal/excluir/<?= $oAnimal->getCodigo() ?>">Excluir</a>
-                <?php } ?>
-            </td>
-        </tr>
-        <?php
-    }
-    ?>
-</table>
-    <?= isset($oPaginacao) ? $oPaginacao->getPaginacao() : "" ?>
-<?php } else { ?>
-<p class="text-info">Nenhum animal encontrado!</p>
-<?php } ?>
+    <?php if(count($aAnimais) > 0)  { ?>
+        <h1>Lista de Animais</h1>
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <td>Código</td>
+                <td>Animal</td>
+                <td>Proprietário</td>
+                <td>Espécie</td>
+                <td>Raça</td>
+                <td>Ações</td>
+            </tr>
+            <?php
+            foreach ($aAnimais as $oAnimal) {
+                ?>
+                <tr>
+                    <td>
+                        <?= $oAnimal->getCodigo() ?>
+                    </td>
+                    <td>
+                        <?= $oAnimal->getNome() ?>
+                    </td>
+                    <td>
+                        <?= empty($oAnimal->getCliente()) ? "" : $oAnimal->getCliente()->getNome() ?>
+                    </td>
+                    <td>
+                        <?= $oAnimal->getEspecie() ?>
+                    </td>
+                    <td>
+                        <?= $oAnimal->getRaca() ?>
+                    </td>
+                    <td>
+                        <?php if ($selecao) { ?>
+                            <a class="btn btn-default" href="/animal/seleciona/<?= $oAnimal->getCodigo() ?>/<?= $vinculo ?>/<?= $codigoVinculo ?>">Selecionar</a>
+                        <?php } else { ?>
+                            <a class="btn btn-success" href="/animal/ver/<?= $oAnimal->getCodigo() ?>">Ver</a>
+                            <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>
+                            <a class="btn btn-danger" href="/animal/excluir/<?= $oAnimal->getCodigo() ?>">Excluir</a>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <?= isset($oPaginacao) ? $oPaginacao->getPaginacao() : "" ?>
+    <?php } else { ?>
+        <p class="text-info">Nenhum animal encontrado!</p>
+    <?php } ?>
     <a class="btn btn-primary" href="/animal/lista">Voltar a lista completa</a>
 </div>
