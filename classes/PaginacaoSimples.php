@@ -56,7 +56,11 @@ class PaginacaoSimples implements Paginacao {
             $sParametros = "?" . implode("&", $aParametrosAux);
         }
 
-        $iTotalPaginas = intval($this->iTotalRegistros / $this->iRegistrosPorPagina) + 1;
+        $iTotalPaginas = intval($this->iTotalRegistros / $this->iRegistrosPorPagina);
+
+        if ($this->iTotalRegistros % $this->iRegistrosPorPagina > 0) {
+            $iTotalPaginas++;
+        }
 
         $sHtml  = "<p class='text-info'>Página {$this->iPagina}/{$iTotalPaginas}</p>";
         $sHtml .= "<ul class='pagination'>";
