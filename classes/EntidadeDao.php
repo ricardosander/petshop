@@ -198,13 +198,17 @@ abstract class EntidadeDao {
    * @param Paginacao|null $oPaginacao Objeto para controle de paginação dos resultados.
    * @return array|bool
    */
-  public function buscar($sCampos = "*", $sWhere = "", Paginacao $oPaginacao = null) {
+  public function buscar($sCampos = "*", $sWhere = "", $sOrder = "", Paginacao $oPaginacao = null) {
 
     if (!empty($sWhere)) {
       $sWhere = " where $sWhere ";
     }
 
-    $sSql = "select {$sCampos} from {$this->sTabela} $sWhere";
+    if (!empty($sOrder)) {
+      $sOrder = " order by {$sOrder} ";
+    }
+
+    $sSql = "select {$sCampos} from {$this->sTabela} $sWhere {$sOrder} ";
     if (!is_null($oPaginacao)) {
       $sSql .= $oPaginacao->getSql();
     }

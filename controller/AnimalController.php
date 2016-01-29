@@ -29,7 +29,7 @@ class AnimalController extends Controller {
 
       $oDao = new AnimalEntidadeDao();
       $sWhere = " cliente is null and usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
-      $aAnimais = $oDao->buscar("*", $sWhere);
+      $aAnimais = $oDao->buscar("*", $sWhere, "nome");
 
       $this->aDados['selecao'] = true;
       $this->aDados['vinculo'] = $sVinculo;
@@ -377,7 +377,7 @@ class AnimalController extends Controller {
         $oPaginacao->setParametros($aBuscaNome);
       }
 
-      $aAnimais = $oDao->buscar("*", $sWhere, $oPaginacao);
+      $aAnimais = $oDao->buscar("*", $sWhere, "nome", $oPaginacao);
 
       $this->aDados['selecao'] = false;
       $this->aDados['aAnimais'] = $aAnimais;

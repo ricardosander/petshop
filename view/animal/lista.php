@@ -20,7 +20,6 @@
         <h1>Lista de Animais</h1>
         <table class="table table-bordered table-striped table-hover">
             <tr>
-                <td>Código</td>
                 <td>Animal</td>
                 <td>Proprietário</td>
                 <td>Espécie</td>
@@ -31,9 +30,6 @@
             foreach ($aAnimais as $oAnimal) {
                 ?>
                 <tr>
-                    <td>
-                        <?= $oAnimal->getCodigo() ?>
-                    </td>
                     <td>
                         <?= $oAnimal->getNome() ?>
                     </td>

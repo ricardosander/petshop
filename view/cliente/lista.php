@@ -3,7 +3,6 @@
         <h1>Lista de Cliente</h1>
         <table class="table table-bordered table-striped table-hover">
             <tr>
-                <td>Código</td>
                 <td>Nome</td>
                 <td>Telefone Principal</td>
                 <td>Saldo Devedor</td>
@@ -13,9 +12,6 @@
             foreach ($aClientes as $oCliente) {
                 ?>
                 <tr>
-                    <td>
-                        <?= $oCliente->getCodigo() ?>
-                    </td>
                     <td>
                         <?= $oCliente->getNome() ?>
                     </td>
@@ -39,7 +35,7 @@
             }
             ?>
         </table>
-        <?= $oPaginacao->getPaginacao(); ?>
+        <?= isset($oPaginacao) ? $oPaginacao->getPaginacao() : "" ?>
     <?php } else { ?>
         <p class="text-info">Nenhum cliente encontrado!</p>
     <?php } ?>

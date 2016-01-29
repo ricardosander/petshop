@@ -32,7 +32,7 @@ class ClienteController extends Controller {
       }
       $oPaginacao = new PaginacaoSimples("cliente", $iPorPagina, $iTotal, $iPagina);
 
-      $aClientes = $oDao->buscar("*", $sWhere, $oPaginacao);
+      $aClientes = $oDao->buscar("*", $sWhere, "nome", $oPaginacao);
 
       $this->aDados['selecao']    = false;
       $this->aDados['aClientes']  = $aClientes;
@@ -58,7 +58,7 @@ class ClienteController extends Controller {
 
       $oDao = new ClienteEntidadeDao();
       $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
-      $aClientes = $oDao->buscar("*", $sWhere);
+      $aClientes = $oDao->buscar("*", $sWhere, "nome");
 
       $this->aDados['selecao'] = true;
       $this->aDados['vinculo'] = $sVinculo;
