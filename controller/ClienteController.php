@@ -177,11 +177,17 @@ class ClienteController extends Controller {
         $nSaldoDevedor = 0;
       }
 
-      $sTelefone  = str_replace("-", "", $this->getRequisicao()->getPost("telefone"));
-      $sTelefone2 = str_replace("-", "", $this->getRequisicao()->getPost("telefone2"));
-      $sTelefone3 = str_replace("-", "", $this->getRequisicao()->getPost("telefone3"));
-      $sTelefone4 = str_replace("-", "", $this->getRequisicao()->getPost("telefone4"));
-      $sTelefone5 = str_replace("-", "", $this->getRequisicao()->getPost("telefone5"));
+      $sDDD1 = $this->getRequisicao()->getPost("ddd1");
+      $sDDD2 = $this->getRequisicao()->getPost("ddd2");
+      $sDDD3 = $this->getRequisicao()->getPost("ddd3");
+      $sDDD4 = $this->getRequisicao()->getPost("ddd4");
+      $sDDD5 = $this->getRequisicao()->getPost("ddd5");
+
+      $sTelefone  = $sDDD1 . str_replace("-", "", $this->getRequisicao()->getPost("telefone"));
+      $sTelefone2 = !empty($this->getRequisicao()->getPost("telefone2")) ? $sDDD2 . str_replace("-", "", $this->getRequisicao()->getPost("telefone2")) : null;
+      $sTelefone3 = !empty($this->getRequisicao()->getPost("telefone3")) ? $sDDD3 . str_replace("-", "", $this->getRequisicao()->getPost("telefone3")) : null;
+      $sTelefone4 = !empty($this->getRequisicao()->getPost("telefone4")) ? $sDDD4 . str_replace("-", "", $this->getRequisicao()->getPost("telefone4")) : null;
+      $sTelefone5 = !empty($this->getRequisicao()->getPost("telefone5")) ? $sDDD5 . str_replace("-", "", $this->getRequisicao()->getPost("telefone5")) : null;
 
       $oCliente = new Cliente();
       $oCliente->setNome($this->getRequisicao()->getPost("nome"));
@@ -197,12 +203,12 @@ class ClienteController extends Controller {
       $oCliente->setSaldoDevedor($nSaldoDevedor);
       $oCliente->setUsuario($this->getSessao()->getUsuarioLogado()->getCodigo());
 
-      $oValidador = new ClienteValidator();
-      $oValidador->setDados(array('cliente' => $oCliente));
-      $oValidador->validar();
-
+      $oValidador  = new ClienteValidator();
       $oDaoCliente = new ClienteEntidadeDao();
       $oDaoCliente->iniciaTransacao();
+
+      $oValidador->setDados(array('cliente' => $oCliente));
+      $oValidador->validar();
 
       if (!$oDaoCliente->salvar($oCliente)) {
         throw new Exception("Houve um erro ao tentar inserir o cliente. Contate suporte.");
@@ -221,7 +227,7 @@ class ClienteController extends Controller {
         if (!$oDaoAnimal->salvar($oAnimal)) {
           throw new Exception("Houve um erro ao tentar atualizar animal. Contate suporte.");
         }
-        $sDestino = "/animal/ver/{$iCodigoAnimal}";
+        $sDestino = "/cliente/ver/{$oCliente->getCodigo()}";
       }
       $oDaoCliente->encerraTransacao(false);
 
@@ -273,11 +279,17 @@ class ClienteController extends Controller {
       $nSaldoDevedor = 0;
     }
 
-    $sTelefone = str_replace("-", "", $this->getRequisicao()->getPost("telefone"));
-    $sTelefone2 = str_replace("-", "", $this->getRequisicao()->getPost("telefone2"));
-    $sTelefone3 = str_replace("-", "", $this->getRequisicao()->getPost("telefone3"));
-    $sTelefone4 = str_replace("-", "", $this->getRequisicao()->getPost("telefone4"));
-    $sTelefone5 = str_replace("-", "", $this->getRequisicao()->getPost("telefone5"));
+    $sDDD1 = $this->getRequisicao()->getPost("ddd1");
+    $sDDD2 = $this->getRequisicao()->getPost("ddd2");
+    $sDDD3 = $this->getRequisicao()->getPost("ddd3");
+    $sDDD4 = $this->getRequisicao()->getPost("ddd4");
+    $sDDD5 = $this->getRequisicao()->getPost("ddd5");
+
+    $sTelefone  = $sDDD1 . str_replace("-", "", $this->getRequisicao()->getPost("telefone"));
+    $sTelefone2 = !empty($this->getRequisicao()->getPost("telefone2")) ? $sDDD2 . str_replace("-", "", $this->getRequisicao()->getPost("telefone2")) : null;
+    $sTelefone3 = !empty($this->getRequisicao()->getPost("telefone3")) ? $sDDD3 . str_replace("-", "", $this->getRequisicao()->getPost("telefone3")) : null;
+    $sTelefone4 = !empty($this->getRequisicao()->getPost("telefone4")) ? $sDDD4 . str_replace("-", "", $this->getRequisicao()->getPost("telefone4")) : null;
+    $sTelefone5 = !empty($this->getRequisicao()->getPost("telefone5")) ? $sDDD5 . str_replace("-", "", $this->getRequisicao()->getPost("telefone5")) : null;
 
     $oCliente = new Cliente();
     $oCliente->setCodigo($this->getRequisicao()->getPost("id"));
@@ -297,6 +309,10 @@ class ClienteController extends Controller {
     try {
 
       $oValidador = new ClienteValidator();
+      $oDao       = new ClienteEntidadeDao();
+      $oDao->iniciaTransacao();
+
+
       $oValidador->setDados(array('cliente' => $oCliente));
       $oValidador->validar();
 
@@ -304,8 +320,6 @@ class ClienteController extends Controller {
         throw new Exception("Cliente não identificado para a edição.");
       }
 
-      $oDao = new ClienteEntidadeDao();
-      $oDao->iniciaTransacao();
       if (!$oDao->salvar($oCliente)) {
         throw new Exception("Houve um erro ao tentar atualizar o cliente. Contate suporte.");
       }

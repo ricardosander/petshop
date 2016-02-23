@@ -142,15 +142,16 @@ class AnimalController extends Controller {
     }
 
     $sDataNascimento = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('nascimento'))));
-    $sDataCadastro = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('cadastro'))));
+    $sDataCadastro   = implode("-", array_reverse(explode("/", $this->getRequisicao()->getPost('cadastro'))));
 
     try {
 
       $oValidador = new AnimalValidador();
-      $oValidador->setDados(array(
-          "animal" => $oAnimal,
+      $oValidador->setDados(
+        array(
+          "animal"          => $oAnimal,
           "data_nascimento" => $sDataNascimento,
-          "data_cadastro" => $sDataCadastro)
+          "data_cadastro"   => $sDataCadastro)
       );
       $oValidador->validar();
 

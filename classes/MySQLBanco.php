@@ -40,13 +40,27 @@ class MySQLBanco implements Banco {
     if (!isset($this->conn) && $this->temTransacao()) {
       return;
     }
-    $sHost     = "localhost";
-    $sUser     = "root";
-    $sPassword = "root";
-    $sDataBase = "meupet";
-    $sPorta    = null;
 
-    $this->conn = mysqli_connect($sHost, $sUser, $sPassword, $sDataBase, $sPorta);
+    $aConexao = array(
+      "host"     => "localhost",
+      "user"     => "root",
+      "password" => "",
+      "database" => "",
+      "port"     => null
+    );
+
+    $sArquivoConfiguracao = __DIR__ . "/../config/database.php";
+    if (file_exists($sArquivoConfiguracao)) {
+      include($sArquivoConfiguracao);
+    } 
+
+    $this->conn = mysqli_connect(
+      $aConexao['host'],
+      $aConexao['user'],
+      $aConexao['password'],
+      $aConexao['database'],
+      $aConexao['port']
+    );
   }
 
   public function query($sSql) {
