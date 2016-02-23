@@ -15,7 +15,7 @@ class PGBanco implements Banco {
     $rsConn = @pg_connect("host={$sHost} port={$sPort} dbname={$sDbName} user={$sUser} password={$sPassword}");
 
     if ($rsConn === false)  {
-      throw new Exception("Falha na conexão.");
+      throw new Exception("Falha na conexï¿½o.");
     }
     $this->conn = $rsConn;
   }
@@ -34,7 +34,7 @@ class PGBanco implements Banco {
     return pg_num_rows($rsQuery);
   }
 
-  public function getResgitro($rsQuery, $iLinha) {
+  public function getResgitroDeprecated($rsQuery, $iLinha) {
 
     $iNumeroCampos = pg_num_fields($rsQuery);
     
@@ -53,6 +53,6 @@ class PGBanco implements Banco {
 
   public function escapeStrings($sString) {
     // TODO: Implement escapeStrings() method.
-    die("método não implementado para o postgre");
+    die("mï¿½todo nï¿½o implementado para o postgre");
   }
 }
