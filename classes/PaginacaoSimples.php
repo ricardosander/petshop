@@ -70,52 +70,24 @@ class PaginacaoSimples implements Paginacao {
     $sHtml = "<p class='text-info'>Página {$this->iPagina}/{$iTotalPaginas}</p>";
     $sHtml .= "<ul class='pagination'>";
 
-    //Cálcula a página de inicio da paginação.
-    $iInicio = $this->iPagina - 2;
-    if ($iInicio < 1) {
-      $iInicio = 1;
-    }
+    //Calcula as posições inicial e final da paginação.
+    $iPaginaInicio = ($this->iPagina - 2) > 0               ? $this->iPagina - 2 : 1;
+    $iPaginaFim    = ($this->iPagina + 2) <= $iTotalPaginas ? $this->iPagina + 2 : $iTotalPaginas;
 
-    //Cálcula a página de fim da paginação.
-    $iFim = $this->iPagina + 2;
-    if ($iFim > $iTotalPaginas) {
-      $iFim = $iTotalPaginas;
-    }
+    //Ajustando valores para sempre ter 5 páginas.
+    $iPaginaInicio -= $iPaginaFim > ($iTotalPaginas - 2) ? 4 - $iPaginaFim + $iPaginaInicio : 0;
+    $iPaginaFim    += $iPaginaInicio < 3                 ? 4 - $iPaginaFim + $iPaginaInicio : 0;
 
-    //Ajusta a diferença para sempre termos 5 páginas sequenciais.
-    if (($iFim - $iInicio) != 4) {
+    //Calcula páginas anterior e posterior.
+    $iPaginaAnterior = ($this->iPagina - 1) > 0               ? $this->iPagina - 1 : 1;
+    $iProximaPagina  = ($this->iPagina + 1) <= $iTotalPaginas ? $this->iPagina + 1 : $iTotalPaginas;
 
-      $iDifenca = 4 - ($iFim - $iInicio);
-      if ($iInicio == 1) {
-        $iFim += $iDifenca;
-      }
+    $sHtml .= "<li><a href='/{$this->sModulo}/lista/1'><<</a></li>";
+    $sHtml .= "<li><a href='/{$this->sModulo}/lista/{$iPaginaAnterior}'><</a></li>";
+    for ($i = $iPaginaInicio; $i <= $iPaginaFim; $i++) {
 
-      if ($iFim == $iTotalPaginas) {
-        $iInicio -= $iDifenca;
-      }
-    }
-
-    if ($iInicio < 1) {
-      $iInicio = 1;
-    }
-
-    if ($iFim > $iTotalPaginas) {
-      $iFim = $iTotalPaginas;
-    }
-
-    for ($i = $iInicio; $i <= $iFim; $i++) {
-
-      $sCaminho = "/{$this->sModulo}/lista";
-      $sLink    = "{$sCaminho}/{$i}";
+      $sLink    = "/{$this->sModulo}/lista/{$i}";
       $sClass   = "";
-
-      if ($i == $iInicio && $i != $this->iPagina && $iInicio != 1) {
-        $sHtml .= $this->montaLinkPaginacao(1, "{$sCaminho}/1", $sParametros);
-
-        if (($i - 1) != 1) {
-          $sHtml .= $this->montaLinkPaginacao("...", "");
-        }
-      }
 
       if ($i == $this->iPagina) {
 
@@ -123,27 +95,14 @@ class PaginacaoSimples implements Paginacao {
         $sClass = "class='active'";
       }
 
-      $sHtml .= $this->montaLinkPaginacao($i, $sLink, $sParametros, $sClass);
-
-      if ($i == $iFim && $iFim != $iTotalPaginas) {
-
-        if (($i + 1) != $iTotalPaginas) {
-          $sHtml .= $this->montaLinkPaginacao("...", "");
-        }
-        $sHtml .= $this->montaLinkPaginacao($iTotalPaginas, "{$sCaminho}/{$iTotalPaginas}", $sParametros);
-      }
+      $sHtml .= "<li {$sClass} ><a href='{$sLink}'>{$i}</a></li>";
     }
+
+    $sHtml .= "<li><a href='/{$this->sModulo}/lista/{$iProximaPagina}'>></a></li>";
+    $sHtml .= "<li><a href='/{$this->sModulo}/lista/{$iTotalPaginas}'>>></a></li>";
 
     $sHtml .= "</ul><br>({$this->iTotalRegistros} resultados)<br><br>";
     return $sHtml;
-  }
-
-  private function montaLinkPaginacao($iPosicao, $sLink, $sParametros = "", $sClass = "") {
-
-    if (!empty($sLink)) {
-      $sLink = "href='{$sLink}{$sParametros}'";
-    }
-    return "<li {$sClass} ><a {$sLink}>{$iPosicao}</a></li>";
   }
 
   public function getSql() {
