@@ -41,26 +41,20 @@ class MySQLBanco implements Banco {
       return;
     }
 
-    $aConexao = array(
-      "host"     => "localhost",
-      "user"     => "root",
-      "password" => "",
-      "database" => "",
-      "port"     => null
-    );
-
-    $sArquivoConfiguracao = __DIR__ . "/../config/database.php";
-    if (file_exists($sArquivoConfiguracao)) {
-      include($sArquivoConfiguracao);
-    } 
+    $sArquivoConfiguracao = "config/database.ini";
+    if (!file_exists($sArquivoConfiguracao)) {
+        throw new Exception("Banco de dados não configurado.");
+    }
+    $aConexao = parse_ini_file("config/database.ini");
 
     $this->conn = mysqli_connect(
       $aConexao['host'],
       $aConexao['user'],
       $aConexao['password'],
       $aConexao['database'],
-      $aConexao['port']
+      intval($aConexao['port'])
     );
+    $this->conn->set_charset('utf8');
   }
 
   public function query($sSql) {
