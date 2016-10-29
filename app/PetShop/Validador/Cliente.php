@@ -1,9 +1,15 @@
 <?php
 
-class ClienteValidator implements Validador {
+namespace PetShop\Validador;
+
+use PetShop\Validador\Validador;
+use PetShop\Model\Cliente as Model;
+use \Exception;
+
+class Cliente implements Validador {
 
   /**
-   * @var Cliente
+   * @var Model
    */
   private $oCliente;
 

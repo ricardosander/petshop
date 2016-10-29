@@ -1,9 +1,16 @@
 <?php
 
-class AnimalValidador implements Validador {
+namespace PetShop\Validador;
+
+use PetShop\Validador\Validador;
+use PetShop\Model\Animal as Model;
+use \DateTime;
+use \Exception;
+
+class Animal implements Validador {
 
     /**
-     * @var Animal
+     * @var Model
      */
     private $oAnimal;
     private $sDataNascimento;

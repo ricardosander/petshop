@@ -1,4 +1,7 @@
 <?php
+
+namespace PetShop\Validador;
+
 interface Validador {
 
     public function validar();

@@ -3,6 +3,7 @@
 use PetShop\Model\Animal;
 use PetShop\Model\Cliente;
 use PetShop\Paginacao\PaginacaoSimples;
+use PetShop\Validador\Animal as Validador;
 
 class AnimalController extends Controller {
 
@@ -150,7 +151,7 @@ class AnimalController extends Controller {
 
     try {
 
-      $oValidador = new AnimalValidador();
+      $oValidador = new Validador();
       $oValidador->setDados(
         array(
           "animal"          => $oAnimal,
@@ -235,7 +236,7 @@ class AnimalController extends Controller {
 
     try {
 
-      $oValidador = new AnimalValidador();
+      $oValidador = new Validador();
       $oValidador->setDados(array(
           'animal' => $oAnimal,
           'data_cadastro' => $sDataCadastro,

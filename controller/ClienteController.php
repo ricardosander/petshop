@@ -3,6 +3,7 @@
 use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Model\Animal;
 use PetShop\Model\Cliente;
+use PetShop\Validador\Cliente as Validador;
 
 class ClienteController extends Controller {
 
@@ -207,7 +208,7 @@ class ClienteController extends Controller {
       $oCliente->setSaldoDevedor($nSaldoDevedor);
       $oCliente->setUsuario($this->getSessao()->getUsuarioLogado()->getCodigo());
 
-      $oValidador  = new ClienteValidator();
+      $oValidador  = new Validador();
       $oDaoCliente = new ClienteEntidadeDao();
       $oDaoCliente->iniciaTransacao();
 
@@ -312,7 +313,7 @@ class ClienteController extends Controller {
 
     try {
 
-      $oValidador = new ClienteValidator();
+      $oValidador = new Validador();
       $oDao       = new ClienteEntidadeDao();
       $oDao->iniciaTransacao();
 
