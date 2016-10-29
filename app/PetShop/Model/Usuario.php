@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop\Model;
+
 class Usuario {
 
   private $iCodigo;

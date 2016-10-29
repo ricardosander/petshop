@@ -1,5 +1,12 @@
 <?php
 
+namespace PetShop\Model;
+
+use \DateTime;
+use \Exception;
+use \AnimalEntidadeDao;
+use PetShop\Model\Cliente;
+
 class Animal {
 
     /**

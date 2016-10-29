@@ -1,5 +1,11 @@
 <?php
 
+namespace PetShop\Model;
+
+use \ClienteEntidadeDao;
+use \Exception;
+use \AnimalEntidadeDao;
+
 class Cliente {
 
   /**
