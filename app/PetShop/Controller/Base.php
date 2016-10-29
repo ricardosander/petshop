@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop\Controller;
+
 use PetShop\Http\Requisicao;
 use PetShop\Http\Sessao;
 
@@ -7,7 +9,7 @@ use PetShop\Http\Sessao;
  * Class Controller
  * Classe básica para o manipulação de controllers no modelo MVC.
  */
-abstract class Controller {
+abstract class Base {
 
     /**
      * Diretório onde estarão as views para o controller.

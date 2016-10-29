@@ -1,6 +1,10 @@
 <?php
 
-class FrontController extends Controller {
+namespace PetShop\Controller;
+
+use PetShop\Controller\Base;
+
+class Front extends Base  {
 
     /**
      * Controller que será utilizado.
@@ -57,8 +61,6 @@ class FrontController extends Controller {
         @list($sController, $sAcao, $sParametros) = explode("/", $sPath, 3);
 
         if (!empty($sController)) {
-
-            $sController .= "Controller";
             $sController = ucfirst($sController);
         }
 
@@ -87,12 +89,13 @@ class FrontController extends Controller {
         $oController = $this;
         if (!empty($this->sController)) {
 
-            if (!file_exists("controller/{$this->sController}.php")) {
+            if (!file_exists("app/PetShop/Controller/{$this->sController}.php")) {
 
                 $this->__call(null, null);
                 return;
             }
-            $oController = new $this->sController();
+            $sController = "PetShop\\Controller\\{$this->sController}";
+            $oController = new $sController();
         }
         $oController->setView($this->sAcao);
         $oController->getRequisicao()->setParametros($this->aParametros);

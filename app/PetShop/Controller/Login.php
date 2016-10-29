@@ -1,9 +1,12 @@
 <?php
 
+namespace PetShop\Controller;
+
+use PetShop\Controller\Base;
 use PetShop\DAO\Usuario as UsuarioDao;
 use PetShop\Model\Usuario as Usuario;
 
-class LoginController extends Controller {
+class Login extends Base {
 
     public function __construct() {
 

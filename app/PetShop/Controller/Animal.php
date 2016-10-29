@@ -1,13 +1,18 @@
 <?php
 
-use PetShop\Model\Animal;
+namespace PetShop\Controller;
+
+use PetShop\Controller\Base;
+use PetShop\Model\Animal as Model;
 use PetShop\Model\Cliente;
 use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Validador\Animal as Validador;
 use PetShop\Entidade\Animal as Entidade;
 use PetShop\Utils;
+use \Exception;
+use \DateTime;
 
-class AnimalController extends Controller {
+class Animal extends Base {
 
   public function __construct() {
 
@@ -62,7 +67,7 @@ class AnimalController extends Controller {
 
     try {
 
-      $oAnimal = new Animal($iCodigoAnimal);
+      $oAnimal = new Model($iCodigoAnimal);
       $oCliente = new Cliente($iCodigoCliente);
 
       $this->aDados['oAnimal'] = $oAnimal;
@@ -82,7 +87,7 @@ class AnimalController extends Controller {
 
     try {
 
-      $oAnimal = new Animal($iCodigoAnimal);
+      $oAnimal = new Model($iCodigoAnimal);
       $oCliente = new Cliente($iCodigoCliente);
       $oAnimal->setCliente($oCliente);
 
@@ -124,7 +129,7 @@ class AnimalController extends Controller {
 
     $nPeso = Utils::stringToFloat($this->getRequisicao()->getPost('peso'));
 
-    $oAnimal = new Animal();
+    $oAnimal = new Model();
     $oAnimal->setNome($this->getRequisicao()->getPost('nome'));
     $oAnimal->setEspecie($this->getRequisicao()->getPost('especie'));
     $oAnimal->setRaca($this->getRequisicao()->getPost('raca'));
@@ -219,7 +224,7 @@ class AnimalController extends Controller {
 
     $nPeso = Utils::stringToFloat($this->getRequisicao()->getPost('peso'));
 
-    $oAnimal = new Animal($this->getRequisicao()->getPost("id"));
+    $oAnimal = new Model($this->getRequisicao()->getPost("id"));
     $oAnimal->setNome($this->getRequisicao()->getPost('nome'));
     $oAnimal->setEspecie($this->getRequisicao()->getPost('especie'));
     $oAnimal->setRaca($this->getRequisicao()->getPost('raca'));

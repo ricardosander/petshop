@@ -1,14 +1,18 @@
 <?php
 
+namespace PetShop\Controller;
+
+use PetShop\Controller\Base;
 use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Model\Animal;
-use PetShop\Model\Cliente;
+use PetShop\Model\Cliente as Model;
 use PetShop\Validador\Cliente as Validador;
 use PetShop\Entidade\Cliente as Entidade;
 use PetShop\Entidade\Animal as EntidadeAnimal;
 use PetShop\Utils;
+use \Exception;
 
-class ClienteController extends Controller {
+class Cliente extends Base {
 
   public function __construct() {
 
@@ -93,7 +97,7 @@ class ClienteController extends Controller {
     try {
 
       $oAnimal  = new Animal($iCodigoAnimal);
-      $oCliente = new Cliente($iCodigoCliente);
+      $oCliente = new Model($iCodigoCliente);
 
       $this->aDados['oAnimal']  = $oAnimal;
       $this->aDados['oCliente'] = $oCliente;
@@ -114,7 +118,7 @@ class ClienteController extends Controller {
     try {
 
       $oAnimal  = new Animal($iCodigoAnimal);
-      $oCliente = new Cliente($iCodigoCliente);
+      $oCliente = new Model($iCodigoCliente);
 
       $oAnimal->setCliente($oCliente);
       if (!$oDaoAnimal->salvar($oAnimal)) {
@@ -197,7 +201,7 @@ class ClienteController extends Controller {
       $sTelefone4 = !empty($this->getRequisicao()->getPost("telefone4")) ? $sDDD4 . str_replace("-", "", $this->getRequisicao()->getPost("telefone4")) : null;
       $sTelefone5 = !empty($this->getRequisicao()->getPost("telefone5")) ? $sDDD5 . str_replace("-", "", $this->getRequisicao()->getPost("telefone5")) : null;
 
-      $oCliente = new Cliente();
+      $oCliente = new Model();
       $oCliente->setNome($this->getRequisicao()->getPost("nome"));
       $oCliente->setNomeSecundario($this->getRequisicao()->getPost("nome_secundario"));
       $oCliente->setEndereco($this->getRequisicao()->getPost("endereco"));
@@ -299,7 +303,7 @@ class ClienteController extends Controller {
     $sTelefone4 = !empty($this->getRequisicao()->getPost("telefone4")) ? $sDDD4 . str_replace("-", "", $this->getRequisicao()->getPost("telefone4")) : null;
     $sTelefone5 = !empty($this->getRequisicao()->getPost("telefone5")) ? $sDDD5 . str_replace("-", "", $this->getRequisicao()->getPost("telefone5")) : null;
 
-    $oCliente = new Cliente();
+    $oCliente = new Model();
     $oCliente->setCodigo($this->getRequisicao()->getPost("id"));
     $oCliente->setNome($this->getRequisicao()->getPost("nome"));
     $oCliente->setNomeSecundario($this->getRequisicao()->getPost("nome_secundario"));
