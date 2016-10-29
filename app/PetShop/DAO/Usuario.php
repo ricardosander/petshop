@@ -1,6 +1,11 @@
 <?php
 
-class UsuarioDao {
+namespace PetShop\DAO;
+
+use \Usuario as Model;
+use \MySQLBanco;
+
+class Usuario {
 
   /**
    * @var Banco
@@ -11,7 +16,7 @@ class UsuarioDao {
     $this->oBanco = new MySQLBanco();
   }
 
-  public function validarUsuario(Usuario $oUsuario) {
+  public function validarUsuario(Model $oUsuario) {
 
     $this->oBanco->conectar();
 
@@ -58,7 +63,7 @@ class UsuarioDao {
 
       $oStdUsuario = $this->oBanco->getResgitro($rsUsuario, 0);
 
-      $oUsuario = new Usuario();
+      $oUsuario = new Model();
       $oUsuario->setCodigo($oStdUsuario->id);
       $oUsuario->setUsuario($oStdUsuario->usuario);
 

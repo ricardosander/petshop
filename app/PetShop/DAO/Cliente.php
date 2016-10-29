@@ -1,6 +1,13 @@
 <?php
 
-class ClienteDao {
+namespace PetShop\DAO;
+
+use \MySQLBanco;
+use \Cliente as Model;
+use \stdClass;
+
+
+class Cliente {
 
     /**
      * @var MySQLBanco
@@ -41,7 +48,7 @@ class ClienteDao {
         return $aClientes;
     }
 
-    public function inserir(Cliente $oCliente, $iCodigoUsuario) {
+    public function inserir(Model $oCliente, $iCodigoUsuario) {
 
         $this->oBanco->conectar();
 
@@ -116,7 +123,7 @@ class ClienteDao {
 
     private function preencheCliente(stdClass $oRegistro) {
 
-        $oCliente = new Cliente();
+        $oCliente = new Model();
         $oCliente->setCodigo($oRegistro->id);
         $oCliente->setNome($oRegistro->nome);
         $oCliente->setNomeSecundario($oRegistro->nome_secundario);

@@ -1,6 +1,14 @@
 <?php
 
-class AnimalDao {
+namespace PetShop\DAO;
+
+use \MySQLBanco;
+use \Paginacao;
+use \Animal as Model;
+use \Exception;
+use \DateTime;
+
+class Animal {
 
     private $oBanco;
 
@@ -87,7 +95,7 @@ class AnimalDao {
         return $this->preencheAnimal($oRegistro);
     }
 
-    public function inserir(Animal $oAnimal, $iCodigoUsuario) {
+    public function inserir(Model $oAnimal, $iCodigoUsuario) {
 
         $this->oBanco->conectar();
 
@@ -121,11 +129,11 @@ class AnimalDao {
 
     /**
      * @param $oStd
-     * @return Animal
+     * @return Model
      */
     private function preencheAnimal($oStd) {
 
-        $oAnimal = new Animal();
+        $oAnimal = new Model();
         $oAnimal->setCodigo($oStd->id);
         $oAnimal->setNome($oStd->nome);
         $oAnimal->setEspecie($oStd->especie);
@@ -144,7 +152,7 @@ class AnimalDao {
         return $oAnimal;
     }
 
-    public function atualizar(Animal $oAnimal, $iCodigoUsuario) {
+    public function atualizar(Model $oAnimal, $iCodigoUsuario) {
 
         $this->oBanco->conectar();
 
@@ -177,7 +185,7 @@ class AnimalDao {
         return $this->oBanco->query($sSql);
     }
 
-    public function excluir(Animal $oAnimal, $iCodigoUsuario) {
+    public function excluir(Model $oAnimal, $iCodigoUsuario) {
 
         $iCodigo = $oAnimal->getCodigo();
         if (empty($iCodigo)) {
