@@ -1,5 +1,7 @@
 <?php
 
+use PetShop\DAO\Usuario as UsuarioDao;
+
 class Sessao {
 
     /**
