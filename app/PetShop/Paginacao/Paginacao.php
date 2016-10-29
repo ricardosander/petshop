@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop\Paginacao;
+
 /**
  * Interface Paginacao
  * Interface para ser utilizada por classes que controlam paginação.

@@ -1,5 +1,9 @@
 <?php
 
+namespace PetShop\Paginacao;
+
+use PetShop\Paginacao\Paginacao;
+
 class PaginacaoSimples implements Paginacao {
 
   /**

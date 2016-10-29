@@ -1,5 +1,9 @@
 <?php
 
+use PetShop\Model\Animal;
+use PetShop\Model\Cliente;
+use PetShop\Paginacao\PaginacaoSimples;
+
 class AnimalController extends Controller {
 
   public function __construct() {

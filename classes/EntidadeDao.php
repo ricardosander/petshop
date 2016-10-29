@@ -1,6 +1,7 @@
 <?php
 
 use PetShop\DataBase\Factory;
+use PetShop\Paginacao\Paginacao;
 /**
  * Class EntidadeDao
  * TODO implementar escape de string
