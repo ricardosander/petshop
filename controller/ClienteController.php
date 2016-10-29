@@ -4,6 +4,8 @@ use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Model\Animal;
 use PetShop\Model\Cliente;
 use PetShop\Validador\Cliente as Validador;
+use PetShop\Entidade\Cliente as Entidade;
+use PetShop\Entidade\Animal as EntidadeAnimal;
 
 class ClienteController extends Controller {
 
@@ -24,7 +26,7 @@ class ClienteController extends Controller {
     $iPorPagina = 10;
     try {
 
-      $oDao = new ClienteEntidadeDao();
+      $oDao = new Entidade();
       $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
       $iTotal = $oDao->contar($sWhere);
 
@@ -61,7 +63,7 @@ class ClienteController extends Controller {
 
     try {
 
-      $oDao = new ClienteEntidadeDao();
+      $oDao = new Entidade();
       $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
       $aClientes = $oDao->buscar("*", $sWhere, "nome");
 
@@ -105,7 +107,7 @@ class ClienteController extends Controller {
     $iCodigoCliente = $this->getRequisicao()->getPost("codigo_cliente");
     $iCodigoAnimal  = $this->getRequisicao()->getPost("codigo_animal");
 
-    $oDaoAnimal = new AnimalEntidadeDao();
+    $oDaoAnimal = new EntidadeAnimal();
     $oDaoAnimal->iniciaTransacao();
 
     try {
@@ -138,7 +140,7 @@ class ClienteController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDaoCliente = new ClienteEntidadeDao();
+    $oDaoCliente = new Entidade();
     $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oCliente = $oDaoCliente->buscarPorCodigo($iCodigo, $sWhere);
     $aAnimais = $oCliente->getAnimais();
@@ -209,7 +211,7 @@ class ClienteController extends Controller {
       $oCliente->setUsuario($this->getSessao()->getUsuarioLogado()->getCodigo());
 
       $oValidador  = new Validador();
-      $oDaoCliente = new ClienteEntidadeDao();
+      $oDaoCliente = new Entidade();
       $oDaoCliente->iniciaTransacao();
 
       $oValidador->setDados(array('cliente' => $oCliente));
@@ -228,7 +230,7 @@ class ClienteController extends Controller {
         $oAnimal = new Animal($iCodigoAnimal);
         $oAnimal->setCliente($oCliente);
 
-        $oDaoAnimal = new AnimalEntidadeDao();
+        $oDaoAnimal = new EntidadeAnimal();
         if (!$oDaoAnimal->salvar($oAnimal)) {
           throw new Exception("Houve um erro ao tentar atualizar animal. Contate suporte.");
         }
@@ -257,7 +259,7 @@ class ClienteController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDao = new ClienteEntidadeDao();
+    $oDao = new Entidade();
 
     $sWhere = "usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oCliente = $oDao->buscarPorCodigo($iCodigo, $sWhere);
@@ -314,7 +316,7 @@ class ClienteController extends Controller {
     try {
 
       $oValidador = new Validador();
-      $oDao       = new ClienteEntidadeDao();
+      $oDao       = new Entidade();
       $oDao->iniciaTransacao();
 
 
@@ -351,7 +353,7 @@ class ClienteController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDao = new ClienteEntidadeDao();
+    $oDao = new Entidade();
     $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oCliente = $oDao->buscarPorCodigo($iCodigo, $sWhere);
 
@@ -372,8 +374,8 @@ class ClienteController extends Controller {
     $iCodigo = $this->getRequisicao()->getPost("codigo");
     $lExcluiAnimais = $this->getRequisicao()->getPost("excluirAnimais");
 
-    $oDao = new ClienteEntidadeDao();
-    $oDaoAnimal = new AnimalEntidadeDao();
+    $oDao = new Entidade();
+    $oDaoAnimal = new EntidadeAnimal();
     $sWhere = " usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     try {
 

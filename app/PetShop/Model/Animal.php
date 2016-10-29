@@ -2,10 +2,10 @@
 
 namespace PetShop\Model;
 
+use PetShop\Model\Cliente;
+use PetShop\Entidade\Animal as Entidade;
 use \DateTime;
 use \Exception;
-use \AnimalEntidadeDao;
-use PetShop\Model\Cliente;
 
 class Animal {
 
@@ -102,7 +102,7 @@ class Animal {
 
         if (!empty($iCodigo)) {
 
-            $oDaoAnimal = new AnimalEntidadeDao();
+            $oDaoAnimal = new Entidade();
             $lRetorno   = $oDaoAnimal->buscarPorCodigo($iCodigo, "", $this);
 
             if ($lRetorno === false) {

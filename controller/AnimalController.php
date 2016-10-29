@@ -4,6 +4,7 @@ use PetShop\Model\Animal;
 use PetShop\Model\Cliente;
 use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Validador\Animal as Validador;
+use PetShop\Entidade\Animal as Entidade;
 
 class AnimalController extends Controller {
 
@@ -32,7 +33,7 @@ class AnimalController extends Controller {
 
     try {
 
-      $oDao = new AnimalEntidadeDao();
+      $oDao = new Entidade();
       $sWhere = " cliente is null and usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
       $aAnimais = $oDao->buscar("*", $sWhere, "nome");
 
@@ -76,7 +77,7 @@ class AnimalController extends Controller {
     $iCodigoCliente = $this->getRequisicao()->getPost("codigo_cliente");
     $iCodigoAnimal = $this->getRequisicao()->getPost("codigo_animal");
 
-    $oDaoAnimal = new AnimalEntidadeDao();
+    $oDaoAnimal = new Entidade();
 
     try {
 
@@ -164,7 +165,7 @@ class AnimalController extends Controller {
         throw new Exception(implode("<br>", $aErroDatas));
       }
 
-      $oDao = new AnimalEntidadeDao();
+      $oDao = new Entidade();
       if (!$oDao->salvar($oAnimal)) {
         throw new Exception("Houve um erro ao tentar inserir o animal. Contate suporte.");
       }
@@ -193,7 +194,7 @@ class AnimalController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDao = new AnimalEntidadeDao();
+    $oDao = new Entidade();
 
     $sWhere = "usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oAnimal = $oDao->buscarPorCodigo($iCodigo, $sWhere);
@@ -255,7 +256,7 @@ class AnimalController extends Controller {
         throw new Exception(implode("<br>", $aErroDatas));
       }
 
-      $oDao = new AnimalEntidadeDao();
+      $oDao = new Entidade();
       if (!$oDao->salvar($oAnimal)) {
         throw new Exception("Houve um erro ao tentar atualizar o animal. Contate suporte.");
       }
@@ -280,7 +281,7 @@ class AnimalController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDao = new AnimalEntidadeDao();
+    $oDao = new Entidade();
     $sWhere = "usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oAnimal = $oDao->buscarPorCodigo($iCodigo, $sWhere);
 
@@ -300,7 +301,7 @@ class AnimalController extends Controller {
 
     $iCodigo = $this->getRequisicao()->getPost("codigo");
 
-    $oDao = new AnimalEntidadeDao();
+    $oDao = new Entidade();
     $sWhere = "usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oAnimal = $oDao->buscarPorCodigo($iCodigo, $sWhere);
 
@@ -332,7 +333,7 @@ class AnimalController extends Controller {
     }
     $iCodigo = $this->getRequisicao()->getParametros()[0];
 
-    $oDao = new AnimalEntidadeDao();
+    $oDao = new Entidade();
     $sWhere = "usuario = " . $this->getSessao()->getUsuarioLogado()->getCodigo();
     $oAnimal = $oDao->buscarPorCodigo($iCodigo, $sWhere);
 
@@ -349,7 +350,7 @@ class AnimalController extends Controller {
     $sWhere     = "";
     $iPagina    = 1;
     $iPorPagina = 10;
-    $oDao = new AnimalEntidadeDao();
+    $oDao = new Entidade();
     try {
 
       if ($this->getRequisicao()->isSetGet("busca")) {

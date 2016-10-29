@@ -1,6 +1,10 @@
 <?php
 
-class ClienteEntidadeDao extends EntidadeDao {
+namespace PetShop\Entidade;
+
+use PetShop\Entidade\TipoDado;
+
+class Cliente extends Entidade {
 
     protected $sClasse = "\\PetShop\\Model\\Cliente";
     protected $sTabela = "cliente";

@@ -2,9 +2,9 @@
 
 namespace PetShop\Model;
 
-use \ClienteEntidadeDao;
+use PetShop\Entidade\Cliente as Entidade;
+use PetShop\Entidade\Animal as EntidadeAnimal;
 use \Exception;
-use \AnimalEntidadeDao;
 
 class Cliente {
 
@@ -82,7 +82,7 @@ class Cliente {
 
     if (!empty($iCodigo)) {
 
-      $oDao = new ClienteEntidadeDao();
+      $oDao = new Entidade();
       $lRetorno = $oDao->buscarPorCodigo($iCodigo, "", $this);
 
       if ($lRetorno === false) {
@@ -195,7 +195,7 @@ class Cliente {
 
       $this->aAnimais = array();
 
-      $oDaoAnimais = new AnimalEntidadeDao();
+      $oDaoAnimais = new EntidadeAnimal();
       $sWhere = " cliente = " . $this->getCodigo();
       $aAnimais = $oDaoAnimais->buscar("*", $sWhere);
 

@@ -1,7 +1,13 @@
 <?php
 
+namespace PetShop\Entidade;
+
+use PetShop\Entidade\TipoDado;
 use PetShop\DataBase\Factory;
 use PetShop\Paginacao\Paginacao;
+use \DateTime;
+use \Exception;
+use \mysqli_result;
 /**
  * Class EntidadeDao
  * TODO implementar escape de string
@@ -10,7 +16,7 @@ use PetShop\Paginacao\Paginacao;
  * TODO implementar valores máximos e mínimos
  * TODO implementar tamanho máximo do campo
  */
-abstract class EntidadeDao {
+abstract class Entidade {
 
   private $oBanco;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop\Entidade;
+
 abstract class TipoDado {
 
     const STRING  = 1;
