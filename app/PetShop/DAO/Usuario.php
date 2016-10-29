@@ -2,7 +2,7 @@
 
 namespace PetShop\DAO;
 
-use \Usuario as Model;
+use PetShop\Model\Usuario as Model;
 use \MySQLBanco;
 
 class Usuario {

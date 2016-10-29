@@ -2,9 +2,9 @@
 
 namespace PetShop\DAO;
 
+use PetShop\Model\Animal as Model;
 use \MySQLBanco;
 use \Paginacao;
-use \Animal as Model;
 use \Exception;
 use \DateTime;
 

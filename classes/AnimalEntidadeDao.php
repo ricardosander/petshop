@@ -2,7 +2,7 @@
 
 class AnimalEntidadeDao extends EntidadeDao {
 
-  protected $sClasse = "Animal";
+  protected $sClasse = "\\PetShop\\Model\\Animal";
   protected $sTabela = "animal";
 
   protected $aConfiguracoes = array(

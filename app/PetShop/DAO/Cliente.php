@@ -2,8 +2,8 @@
 
 namespace PetShop\DAO;
 
+use PetShop\Model\Cliente as Model;
 use \MySQLBanco;
-use \Cliente as Model;
 use \stdClass;
 
 

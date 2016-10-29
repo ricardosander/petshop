@@ -1,6 +1,7 @@
 <?php
 
 use PetShop\DAO\Usuario as UsuarioDao;
+use PetShop\Model\Usuario;
 
 class Sessao {
 
