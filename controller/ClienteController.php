@@ -6,6 +6,7 @@ use PetShop\Model\Cliente;
 use PetShop\Validador\Cliente as Validador;
 use PetShop\Entidade\Cliente as Entidade;
 use PetShop\Entidade\Animal as EntidadeAnimal;
+use PetShop\Utils;
 
 class ClienteController extends Controller {
 

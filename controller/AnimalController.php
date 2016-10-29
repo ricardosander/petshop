@@ -5,6 +5,7 @@ use PetShop\Model\Cliente;
 use PetShop\Paginacao\PaginacaoSimples;
 use PetShop\Validador\Animal as Validador;
 use PetShop\Entidade\Animal as Entidade;
+use PetShop\Utils;
 
 class AnimalController extends Controller {
 

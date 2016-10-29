@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop;
+
 /**
  * Class Utils
  * Classe com utilidades para o sistema.

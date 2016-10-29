@@ -1,3 +1,4 @@
+<?php use PetShop\Utils; ?>
 <div style="text-align: left; padding-bottom: 10px;" xmlns="http://www.w3.org/1999/html">
     <a class="btn btn-default" href="/animal/lista">Voltar</a>
     <a class="btn btn-primary" href="/animal/editar/<?= $oAnimal->getCodigo() ?>">Editar</a>

@@ -1,5 +1,7 @@
 <?php
 
+namespace PetShop\Http;
+
 use PetShop\DAO\Usuario as UsuarioDao;
 use PetShop\Model\Usuario;
 

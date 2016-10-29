@@ -1,3 +1,4 @@
+<?php use PetShop\Utils; ?>
 <fieldset class="form-group">
   <legend>Cadastro de Animal</legend>
   <form method="post" action="/animal/<?= isset($sAcao) ? $sAcao : "cadastro" ?>" onsubmit="return validarCadastroAnimal();">

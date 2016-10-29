@@ -1,3 +1,4 @@
+<?php use PetShop\Utils; ?>
 <fieldset class="form-group">
   <legend>Cadastro de Cliente</legend>
   <form method="post" action="/cliente/<?= isset($sAcao) ? $sAcao : "cadastro" ?>"

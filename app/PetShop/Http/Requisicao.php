@@ -1,5 +1,9 @@
 <?php
 
+namespace PetShop\Http;
+
+use \stdClass;
+
 class Requisicao {
 
     private static $TIPO_GET  = "GET";

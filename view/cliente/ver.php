@@ -1,3 +1,4 @@
+<?php use PetShop\Utils; ?>
 <div style="text-align: left; padding-bottom: 10px;">
   <a class="btn btn-default" href="/cliente/lista">Voltar</a>
   <a class="btn btn-primary" href="/cliente/editar/<?= $oCliente->getCodigo() ?>">Editar</a>

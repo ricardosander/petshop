@@ -1,5 +1,8 @@
 <?php
 
+use PetShop\Http\Requisicao;
+use PetShop\Http\Sessao;
+
 /**
  * Class Controller
  * Classe básica para o manipulação de controllers no modelo MVC.
