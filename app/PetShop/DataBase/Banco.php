@@ -1,4 +1,7 @@
 <?php
+
+namespace PetShop\DataBase;
+
 interface Banco {
 
   public function iniciaTransacao();

@@ -1,5 +1,6 @@
 <?php
 
+use PetShop\DataBase\Factory;
 /**
  * Class EntidadeDao
  * TODO implementar escape de string
@@ -28,7 +29,7 @@ abstract class EntidadeDao {
   protected $aConfiguracoes;
 
   public function __construct() {
-    $this->oBanco = BancoFactory::getBanco();
+    $this->oBanco = Factory::getBanco();
   }
 
   public function iniciaTransacao() {

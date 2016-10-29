@@ -2,8 +2,8 @@
 
 namespace PetShop\DAO;
 
+use PetShop\DataBase\Factory;
 use PetShop\Model\Usuario as Model;
-use \MySQLBanco;
 
 class Usuario {
 
@@ -13,7 +13,7 @@ class Usuario {
   private $oBanco;
 
   public function __construct() {
-    $this->oBanco = new MySQLBanco();
+    $this->oBanco = Factory::getBanco();
   }
 
   public function validarUsuario(Model $oUsuario) {

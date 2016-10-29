@@ -1,6 +1,13 @@
 <?php
 
-class MySQLBanco implements Banco {
+namespace PetShop\DataBase;
+
+use PetShop\DataBase\Banco;
+use \mysqli;
+use \Exception;
+use \stdClass;
+
+class MySQL implements Banco {
 
   /**
    * @var mysqli

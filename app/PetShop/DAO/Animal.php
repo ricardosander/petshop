@@ -3,7 +3,7 @@
 namespace PetShop\DAO;
 
 use PetShop\Model\Animal as Model;
-use \MySQLBanco;
+use PetShop\DataBase\Factory;
 use \Paginacao;
 use \Exception;
 use \DateTime;
@@ -13,7 +13,7 @@ class Animal {
     private $oBanco;
 
     public function __construct() {
-        $this->oBanco = new MySQLBanco();
+        $this->oBanco = Factory::getBanco();
     }
 
     /**

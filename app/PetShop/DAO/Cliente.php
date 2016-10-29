@@ -2,8 +2,8 @@
 
 namespace PetShop\DAO;
 
+use PetShop\DataBase\Factory;
 use PetShop\Model\Cliente as Model;
-use \MySQLBanco;
 use \stdClass;
 
 
@@ -15,7 +15,7 @@ class Cliente {
     private $oBanco;
 
     public function __construct() {
-        $this->oBanco = new MySQLBanco();
+        $this->oBanco = Factory::getBanco();
     }
 
     public function buscarTodos($iCodigoUsuario) {
