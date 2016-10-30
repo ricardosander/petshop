@@ -146,10 +146,6 @@ abstract class Entidade {
     foreach ($this->aConfiguracoes as $aConfiguracao) {
 
       $sValor = $oRegistro->{$aConfiguracao['coluna']};
-      if ($aConfiguracao['chave_estrangeira'] && !empty($sValor)) {
-        $sValor = new $aConfiguracao['chave_estrangeira']($sValor);
-      }
-
       if ($aConfiguracao['tipo'] == TipoDado::DATA) {
         $sValor = new DateTime($sValor);
       }
@@ -348,10 +344,6 @@ abstract class Entidade {
       if (!$aConfiguracao['chave_primaria']) {
 
         $aColunas[] = $aConfiguracao['coluna'];
-
-        if ($aConfiguracao['chave_estrangeira'] && is_object($sValor)) {
-          $sValor = $sValor->getCodigo();
-        }
         $aValores[] = $sValor;
         continue;
       }

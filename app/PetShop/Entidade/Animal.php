@@ -137,7 +137,7 @@ class Animal extends Entidade {
       'tipo'              => TipoDado::INTEIRO,
       'nulo'              => true,
       'chave_primaria'    => false,
-      'chave_estrangeira' => false
+      'chave_estrangeira' => true
     )
   );
 

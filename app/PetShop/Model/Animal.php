@@ -364,6 +364,11 @@ class Animal {
      */
     public function setCliente($oCliente) {
 
+        if (empty($oCliente)) {
+
+            $this->iCodigoCliente = null;
+            return;
+        }
       $this->oCliente       = $oCliente;
       $this->iCodigoCliente = $oCliente->getCodigo();
     }
