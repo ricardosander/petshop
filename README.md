@@ -9,3 +9,16 @@ Atualmente, o sistema conta com os seguintes recursos:
 - Cadastros de Animais;
 - Cadastros de Clientes;
 - Controle de relacionamento entre clientes e animais;
+
+
+Originalmente, este projeto foi desenvolvido com a intenção de ser um 
+desafio: construir um projeto do zero, sem outras bibliotecas ou 
+projetos, de forma exercitar os conhecimentos em desenvolvimento web.
+
+Com base neste desafio, foi desenvolvido um gerenciador MVC, 
+autenticação de usuáios, gerenciador de requisições e respostas, acesso
+a banco de dados, entre outros recursos.
+
+No Javascript, até o momento, também tentou-se manter somente o básico,
+ com o mínimo de ajuda de bibliotecas externas, com o mesmo intuito: 
+ exercitar os conhecimentos sobre a linguagem.
