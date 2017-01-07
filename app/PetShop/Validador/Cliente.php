@@ -53,7 +53,7 @@ class Cliente implements Validador {
 
     foreach ($aTelefonesValidar as $sLabel => $sTelefone) {
 
-      if (!is_numeric($sTelefone) || strlen($sTelefone) != 10) {
+      if (!is_numeric($sTelefone) || strlen($sTelefone) != 11) {
         $aMensagemErro[] = "O campo {$sLabel} deve ser um número de telefone válido, contendo 8 caractéres numéricos + 2 caractéres numéricos para o DDD.";
       }
     }

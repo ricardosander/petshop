@@ -48,17 +48,17 @@ abstract class Utils {
       return $sTelefoneFormatado;
     }
 
-    if (strlen($sTelefone) == 10) {
+    if (strlen($sTelefone) == 11) {
 
       $sTelefoneFormatado = "(" . substr($sTelefone, $iPosicaoInicial, 2) . ") ";
       $iPosicaoInicial    = 2;
     }
 
-    $sTelefoneFormatado .= " " . substr($sTelefone, $iPosicaoInicial, 4) . "-";
+    $sTelefoneFormatado .= " " . substr($sTelefone, $iPosicaoInicial, 5) . "-";
 
-    $iPosicaoInicial += 4;
+    $iPosicaoInicial += 5;
 
-    $sTelefoneFormatado .= substr($sTelefone, $iPosicaoInicial, 4);
+    $sTelefoneFormatado .= substr($sTelefone, $iPosicaoInicial);
 
     return $sTelefoneFormatado;
   }
@@ -70,7 +70,7 @@ abstract class Utils {
    */
   public static function getDDD(string $sTelefone) : string {
 
-    if (strlen($sTelefone) < 10) {
+    if (strlen($sTelefone) < 11) {
       return "";
     }
     return substr($sTelefone, 0, 2);
@@ -83,7 +83,7 @@ abstract class Utils {
    */
   public static function getSemDDD(string $sTelefone) : string {
 
-    if (strlen($sTelefone) < 10) {
+    if (strlen($sTelefone) < 11) {
       return $sTelefone;
     }
     return substr($sTelefone, 2);

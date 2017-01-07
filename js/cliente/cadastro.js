@@ -1,10 +1,10 @@
 jQuery(function ($) {
 
-    $("#telefone").mask("9999-9999");
-    $("#telefone2").mask("9999-9999");
-    $("#telefone3").mask("9999-9999");
-    $("#telefone4").mask("9999-9999");
-    $("#telefone5").mask("9999-9999");
+    $("#telefone").mask("99999-9999");
+    $("#telefone2").mask("99999-9999");
+    $("#telefone3").mask("99999-9999");
+    $("#telefone4").mask("99999-9999");
+    $("#telefone5").mask("99999-9999");
 
     $("#ddd1").mask("99");
     $("#ddd2").mask("99");
@@ -21,7 +21,7 @@ function validarTelefone(sTelefone) {
 
     sTelefone = sTelefone.replace("-", "");
 
-    if (sTelefone.length != 8) {
+    if (sTelefone.length != 9) {
         return false;
     }
 
