@@ -16,7 +16,7 @@
                         <?= $oCliente->getNome() ?>
                     </td>
                     <td>
-                        <?= $oCliente->getTelefone() ?>
+                        <?= empty($oCliente->getTelefones()) ? '' : $oCliente->getTelefones()[0]->getTelefoneFormatado() ?>
                     </td>
                     <td>
                         <?= $oCliente->isDevedor() ? $oCliente->getSaldoDevedor() : "Não" ?>
