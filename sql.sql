@@ -5,6 +5,13 @@ CREATE TABLE usuario (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE sessao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  token varchar(500) NOT NULL,
+  usuario int(11) NOT NULL,
+  PRIMARY KEY (id)
+);
+
 INSERT INTO usuario VALUES (1, 'admin', ''); -- senha em md5
 
 CREATE TABLE cliente (
