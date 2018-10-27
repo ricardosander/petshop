@@ -77,6 +77,9 @@ abstract class Base {
         $this->aScripts[] = "{$sCaminho}/js/jquery.min.js";
         $this->aScripts[] = "{$sCaminho}/js/bootstrap.js";
         $this->aScripts[] = "{$sCaminho}/js/bootstrap-submenu.js";
+        $this->aScripts[] = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js";
+        $this->aScripts[] = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-cookies.js";
+        $this->aScripts[] = "{$sCaminho}/js/main.js";
         $this->oRequisicao = new Requisicao($_SERVER, $_REQUEST);
         $this->oSessao     = new Sessao();
     }
