@@ -73,11 +73,22 @@ class Sessao {
 
         $this->oUsuarioLogado = $oUsuario;
         $_SESSION["usuario_logado"] = $oUsuario->getCodigo();
+
+        $oModel = new \PetShop\Model\Sessao();
+        $oModel->setIdUsuario($oUsuario->getCodigo());
+        $oModel->setToken($_COOKIE['skey']);
+
+        $oSessaoDao = new \PetShop\DAO\Sessao();
+        $oSessaoDao->inserir($oModel);
     }
 
     public function deslogar() {
 
+        $oSessaoDao = new \PetShop\DAO\Sessao();
+        $oSessaoDao->excluir($this->oUsuarioLogado);
+
         $this->oUsuarioLogado = null;
+
         $this->destroiSessao();
         $this->iniciaSessao();
     }
@@ -89,6 +100,7 @@ class Sessao {
     private function iniciaSessao() {
 
         if (session_status() != PHP_SESSION_ACTIVE) {
+            session_name("skey");
             session_start();
         }
     }
