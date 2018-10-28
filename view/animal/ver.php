@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td>Telefone Principal:</td>
-                <td><?= $oAnimal->getCliente()->getTelefone() ?></td>
+                <td><?= empty($oAnimal->getCliente()->getTelefones()) ? '' : $oAnimal->getCliente()->getTelefones()[0]->getTelefoneFormatado() ?></td>
             </tr>
             <tr>
                 <td>Saldo Devedor:</td>

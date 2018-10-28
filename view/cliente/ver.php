@@ -31,26 +31,19 @@
       <td>Bairro:</td>
       <td><?= $oCliente->getBairro() ?></td>
     </tr>
-    <tr>
-      <td>Telefone Principal:</td>
-      <td><?= Utils::getTelefoneFormatado($oCliente->getTelefone()) ?></td>
-    </tr>
-    <tr>
-      <td>Telefone 2:</td>
-      <td><?= Utils::getTelefoneFormatado($oCliente->getTelefone2()) ?></td>
-    </tr>
-    <tr>
-      <td>Telefone 3:</td>
-      <td><?= Utils::getTelefoneFormatado($oCliente->getTelefone3()) ?></td>
-    </tr>
-    <tr>
-      <td>Telefone 4:</td>
-      <td><?= Utils::getTelefoneFormatado($oCliente->getTelefone4()) ?></td>
-    </tr>
-    <tr>
-      <td>Telefone 5:</td>
-      <td><?= Utils::getTelefoneFormatado($oCliente->getTelefone5()) ?></td>
-    </tr>
+    <?php
+    $nome = "Telefone Principal:";
+    $numero = 1;
+    foreach ($oCliente->getTelefones() as $telefone) { ?>
+      <tr>
+        <td><?= $nome ?></td>
+        <td><?= $telefone->getTelefoneFormatado() ?></td>
+      </tr>
+    <?php
+      $numero++;
+      $nome = "Telefone {$numero}:";
+    }
+    ?>
     <tr>
       <td>Observação:</td>
       <td><?= $oCliente->getObservacao() ?></td>

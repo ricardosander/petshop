@@ -50,46 +50,6 @@ class Cliente extends Entidade {
                               'chave_primaria'    => false,
                               'chave_estrangeira' => false
                              ),
-        'telefone'        => array(
-                              'coluna'            => 'telefone',
-                              'atributo'          => 'telefone',
-                              'tipo'              => TipoDado::STRING,
-                              'nulo'              => false,
-                              'chave_primaria'    => false,
-                              'chave_estrangeira' => false
-                             ),
-        'telefone2'       => array(
-                                'coluna'            => 'telefone2',
-                                'atributo'          => 'telefone2',
-                                'tipo'              => TipoDado::STRING,
-                                'nulo'              => true,
-                                'chave_primaria'    => false,
-                                'chave_estrangeira' => false
-                             ),
-        'telefone3'       => array(
-                                'coluna'            => 'telefone3',
-                                'atributo'          => 'telefone3',
-                                'tipo'              => TipoDado::STRING,
-                                'nulo'              => true,
-                                'chave_primaria'    => false,
-                                'chave_estrangeira' => false
-                             ),
-        'telefone4'       => array(
-                                'coluna'            => 'telefone4',
-                                'atributo'          => 'telefone4',
-                                'tipo'              => TipoDado::STRING,
-                                'nulo'              => true,
-                                'chave_primaria'    => false,
-                                'chave_estrangeira' => false
-                             ),
-        'telefone5'       => array(
-                                'coluna'            => 'telefone5',
-                                'atributo'          => 'telefone5',
-                                'tipo'              => TipoDado::STRING,
-                                'nulo'              => true,
-                                'chave_primaria'    => false,
-                                'chave_estrangeira' => false
-                             ),
         'observacao'      => array(
                                 'coluna'            => 'observacao',
                                 'atributo'          => 'observacao',

@@ -4,6 +4,7 @@ namespace PetShop\Model;
 
 use PetShop\Entidade\Cliente as Entidade;
 use PetShop\Entidade\Animal as EntidadeAnimal;
+use PetShop\Entidade\Telefone as EntidadeTelefone;
 use \Exception;
 
 class Cliente {
@@ -34,29 +35,9 @@ class Cliente {
   private $sBairro;
 
   /**
-   * @var string
+   * @var Telefone[]
    */
-  private $sTelefone;
-
-  /**
-   * @var string
-   */
-  private $sTelefone2;
-
-  /**
-   * @var string
-   */
-  private $sTelefone3;
-
-  /**
-   * @var string
-   */
-  private $sTelefone4;
-
-  /**
-   * @var string
-   */
-  private $sTelefone5;
+  private $telefones = null;
 
   /**
    * @var string
@@ -127,38 +108,24 @@ class Cliente {
   }
 
   /**
-   * @return string
+   * @return Telefone[]
    */
-  public function getTelefone() {
-    return $this->sTelefone;
-  }
+  public function getTelefones() {
 
-  /**
-   * @return string
-   */
-  public function getTelefone2() {
-    return $this->sTelefone2;
-  }
+      if (is_null($this->telefones)) {
 
-  /**
-   * @return string
-   */
-  public function getTelefone3() {
-    return $this->sTelefone3;
-  }
+          $this->telefones = array();
 
-  /**
-   * @return string
-   */
-  public function getTelefone4() {
-    return $this->sTelefone4;
-  }
+          $daoTelefones = new EntidadeTelefone();
+          $where = " cliente = " . $this->getCodigo();
+          $order = "id";
+          $telefones = $daoTelefones->buscar("*", $where, $order);
 
-  /**
-   * @return string
-   */
-  public function getTelefone5() {
-    return $this->sTelefone5;
+          if ($telefones !== false) {
+              $this->telefones = $telefones;
+          }
+      }
+      return $this->telefones;
   }
 
   /**
@@ -243,38 +210,10 @@ class Cliente {
   }
 
   /**
-   * @param string $sTelefone
+   * @param Telefone[] $telefones
    */
-  public function setTelefone($sTelefone) {
-    $this->sTelefone = $sTelefone;
-  }
-
-  /**
-   * @param string $sTelefone2
-   */
-  public function setTelefone2($sTelefone2) {
-    $this->sTelefone2 = $sTelefone2;
-  }
-
-  /**
-   * @param string $sTelefone3
-   */
-  public function setTelefone3($sTelefone3) {
-    $this->sTelefone3 = $sTelefone3;
-  }
-
-  /**
-   * @param string $sTelefone4
-   */
-  public function setTelefone4($sTelefone4) {
-    $this->sTelefone4 = $sTelefone4;
-  }
-
-  /**
-   * @param string $sTelefone5
-   */
-  public function setTelefone5($sTelefone5) {
-    $this->sTelefone5 = $sTelefone5;
+  public function setTelefones($telefones) {
+    $this->telefones = $telefones;
   }
 
   /**
