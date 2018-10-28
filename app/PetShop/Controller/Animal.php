@@ -396,6 +396,8 @@ class Animal extends Base {
       $this->aDados['aAnimais'] = $aAnimais;
       $this->aDados['oPaginacao'] = $oPaginacao;
 
+      $this->aScripts[] = "../../js/animal/lista.js";
+
     } catch (Exception $e) {
       die($e->getMessage());
     }
