@@ -44,7 +44,23 @@
                 </td>
             </tr>
         </table>
-        <?= isset($oPaginacao) ? $oPaginacao->getPaginacao() : "" ?>
+        <p class="text-info">Página {{currentPage}}/{{totalPages}}</p>
+        <ul class="pagination">
+            <li><a href="#" ng-click="requestFirstPage();" ><<</a></li>
+            <li><a href="#" ng-click="requestPreviousPage();"><</a></li>
+            <!--  
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="/animal/lista?page=2">2</a></li>
+            <li><a href="/animal/lista?page=3">3</a></li>
+            <li><a href="/animal/lista?page=4">4</a></li>
+            <li><a href="/animal/lista?page=5">5</a></li> 
+            -->
+            <li><a href="#" ng-click="requestNextPage();">></a></li>
+            <li><a href="#" ng-click="requestLastPage();">>></a></li>
+        </ul>
+        <br>
+        ({{totalElements}} resultados)
+        <br><br>
     </div>
     <div ng-show="show_no_pets">
         <p class="text-info">Nenhum animal encontrado!</p>
